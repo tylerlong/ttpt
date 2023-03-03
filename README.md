@@ -13,5 +13,5 @@ yarn add --dev ttpt
 ## Usage
 
 ```
-yarn ttpt init
+yarn ttpt
 ```

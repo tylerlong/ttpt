@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 import { run } from 'shell-commands';
-import { existsSync, mkdirSync, writeFileSync } from 'fs';
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
 import { dirname, join } from 'path';
+import { merge } from 'lodash';
 
 // create the file only if it doesn't exist
 const ensure = (filePath: string, content: string) => {
@@ -13,7 +14,20 @@ const ensure = (filePath: string, content: string) => {
 };
 
 const main = async () => {
-  ensure('package.json', '{"license": "UNLICENSED"}');
+  const pkgJson = {
+    license: 'UNLICENSED',
+    version: '0.1.0',
+    scripts: {
+      test: 'ts-node src/index.ts',
+    },
+  };
+  let originalPkg = {};
+  if (existsSync('package.json')) {
+    originalPkg = JSON.parse(readFileSync('package.json', 'utf-8'));
+    writeFileSync('package.json', JSON.stringify(merge(pkgJson, originalPkg), null, 2));
+  } else {
+    writeFileSync('package.json', JSON.stringify(pkgJson, null, 2));
+  }
   await run(`
     yarn add --dev yarn-upgrade-all typescript 
     yarn add --dev eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint-config-alloy
@@ -24,21 +38,21 @@ const main = async () => {
   ensure(
     '.prettierrc.js',
     `
-  module.exports = {
-    ...require("eslint-config-alloy/.prettierrc.js")
-  };
+module.exports = {
+  ...require("eslint-config-alloy/.prettierrc.js")
+};
   `.trim() + '\n',
   );
   ensure(
     '.eslintrc.js',
     `
-  module.exports = {
-    extends: ['alloy', 'alloy/typescript', 'prettier'],
-    plugins: ['prettier'],
-    rules: {
-      'prettier/prettier': ['error'],
-    },
-  };
+module.exports = {
+  extends: ['alloy', 'alloy/typescript', 'prettier'],
+  plugins: ['prettier'],
+  rules: {
+    'prettier/prettier': ['error'],
+  },
+};
   `.trim() + '\n',
   );
   ensure('.gitignore', 'node_modules/\n');
