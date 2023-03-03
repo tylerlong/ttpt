@@ -1,17 +1,17 @@
-# Tyler TyperScript Template
+# Tyler TyperScript Project Templates
 
-Some TypeScript templates from Tyler Liu to quickly create new projects.
+Some TypeScript project templates from Tyler Liu to quickly create new projects.
 
 
 ## Install
 
 ```
-yarn add --dev ttst
+yarn add --dev ttpt
 ```
 
 
 ## Usage
 
 ```
-yarn ttst init
+yarn ttpt init
 ```

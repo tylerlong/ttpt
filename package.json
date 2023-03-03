@@ -1,13 +1,13 @@
 {
   "license": "MIT",
-  "name": "ttst",
+  "name": "ttpt",
   "version": "0.1.0",
   "scripts": {
     "test": "rm -rf demo && mkdir demo && cd demo && ts-node ../src/index.ts init",
     "prepublishOnly": "tsc src/index.ts --outDir lib"
   },
   "bin": {
-    "ttst": "./lib/index.js"
+    "ttpt": "./lib/index.js"
   },
   "dependencies": {
     "shell-commands": "^0.1.2"
