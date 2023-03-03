@@ -1,14 +1,15 @@
+#!/usr/bin/env node
 import { run } from 'shell-commands';
-import fs from 'fs';
-import path from 'path';
+import { existsSync, mkdirSync, writeFileSync } from 'fs';
+import { dirname, join } from 'path';
 
 // create the file only if it doesn't exist
 const ensure = (filePath: string, content: string) => {
-  if (fs.existsSync(filePath)) {
+  if (existsSync(filePath)) {
     return;
   }
-  fs.mkdirSync(path.dirname(filePath), { recursive: true });
-  fs.writeFileSync(filePath, content);
+  mkdirSync(dirname(filePath), { recursive: true });
+  writeFileSync(filePath, content);
 };
 
 const main = async () => {
@@ -19,7 +20,7 @@ const main = async () => {
     yarn add --dev prettier eslint-plugin-prettier eslint-config-prettier 
   `);
   ensure('README.md', '# ');
-  ensure(path.join('src', 'index.ts'), "console.log('Hello world!');\n");
+  ensure(join('src', 'index.ts'), "console.log('Hello world!');\n");
   ensure(
     '.prettierrc.js',
     `
