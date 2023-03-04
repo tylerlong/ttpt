@@ -10,7 +10,7 @@ const ensure = (filePath: string, content: string) => {
     return;
   }
   mkdirSync(dirname(filePath), { recursive: true });
-  writeFileSync(filePath, content);
+  writeFileSync(filePath, content + '\n');
 };
 
 const main = async () => {
@@ -34,14 +34,14 @@ const main = async () => {
     yarn add --dev prettier eslint-plugin-prettier eslint-config-prettier 
   `);
   ensure('README.md', '# ');
-  ensure(join('src', 'index.ts'), "console.log('Hello world!');\n");
+  ensure(join('src', 'index.ts'), "console.log('Hello world!');");
   ensure(
     '.prettierrc.js',
     `
 module.exports = {
   ...require("eslint-config-alloy/.prettierrc.js")
 };
-  `.trim() + '\n',
+  `.trim(),
   );
   ensure(
     '.eslintrc.js',
@@ -53,10 +53,12 @@ module.exports = {
     'prettier/prettier': ['error'],
   },
 };
-  `.trim() + '\n',
+  `.trim(),
   );
-  ensure('.gitignore', 'node_modules/\n');
-  ensure('.ackrc', '--ignore-dir=node_modules\n');
+  ensure('.gitignore', 'node_modules/');
+  ensure('.ackrc', '--ignore-dir=node_modules');
+  ensure('.eslintignore', 'node_modules/');
+  ensure('.prettierignore', 'node_modules/');
 };
 
 main();
