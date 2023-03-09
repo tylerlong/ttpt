@@ -1,7 +1,7 @@
 {
   "license": "MIT",
   "name": "ttpt",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "scripts": {
     "test": "rm -rf demo && mkdir demo && cd demo && ts-node ../src/index.ts init",
     "prepublishOnly": "tsc src/index.ts --outDir lib"
