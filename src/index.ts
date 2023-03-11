@@ -18,6 +18,7 @@ const main = async () => {
     license: 'UNLICENSED',
     version: '0.1.0',
     scripts: {
+      lint: "eslint --fix '**/*.{ts,tsx,js,jsx}' && prettier --write .",
       test: 'ts-node src/index.ts',
     },
   };
