@@ -1,4 +1,4 @@
-import { appendFileSync, existsSync, mkdirSync, writeFileSync } from 'fs';
+import { appendFileSync, existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
 import { dirname } from 'path';
 
 // create the file only if it doesn't exist
@@ -12,5 +12,8 @@ export const ensure = (filePath: string, content: string) => {
 
 // append content to file, assume file exists
 export const append = (filePath: string, content: string) => {
-  appendFileSync(filePath, content.trim() + '\n');
+  const fileContent = readFileSync(filePath, 'utf-8');
+  if (fileContent.indexOf(content.trim()) === -1) {
+    appendFileSync(filePath, content.trim() + '\n');
+  }
 };
