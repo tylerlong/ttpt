@@ -26,7 +26,7 @@ export const base = async () => {
     yarn add --dev eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint-config-alloy
     yarn add --dev prettier eslint-plugin-prettier eslint-config-prettier 
   `);
-  ensure('README.md', '# ');
+  ensure('README.md', '# Untitled App');
   ensure(join('src', 'index.ts'), "console.log('Hello world!');");
   ensure(
     '.prettierrc.js',
