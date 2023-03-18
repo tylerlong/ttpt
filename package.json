@@ -1,11 +1,12 @@
 {
   "license": "MIT",
-  "name": "ttpt",
   "version": "0.2.2",
   "scripts": {
-    "test": "rm -rf demo && mkdir demo && cd demo && ts-node ../src/index.ts init",
+    "lint": "eslint --fix '**/*.{ts,tsx,js,jsx}' && prettier --write .",
+    "test": "rm -rf demo && mkdir demo && cd demo && ts-node ../src/index.ts -w",
     "prepublishOnly": "tsc src/index.ts --outDir lib"
   },
+  "name": "ttpt",
   "bin": {
     "ttpt": "./lib/index.js"
   },
@@ -15,16 +16,16 @@
   },
   "devDependencies": {
     "@types/lodash": "^4.14.191",
-    "@types/node": "^18.14.4",
-    "@typescript-eslint/eslint-plugin": "^5.54.0",
-    "@typescript-eslint/parser": "^5.54.0",
-    "eslint": "^8.35.0",
+    "@types/node": "^18.15.3",
+    "@typescript-eslint/eslint-plugin": "^5.55.0",
+    "@typescript-eslint/parser": "^5.55.0",
+    "eslint": "^8.36.0",
     "eslint-config-alloy": "^4.9.0",
-    "eslint-config-prettier": "^8.6.0",
+    "eslint-config-prettier": "^8.7.0",
     "eslint-plugin-prettier": "^4.2.1",
     "prettier": "^2.8.4",
     "ts-node": "^10.9.1",
-    "typescript": "^4.9.5",
+    "typescript": "^5.0.2",
     "yarn-upgrade-all": "^0.7.2"
   }
 }
