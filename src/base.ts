@@ -7,10 +7,11 @@ import { ensure } from './utils';
 
 export const base = async () => {
   const pkgJson = {
+    name: 'untitled-app',
     license: 'UNLICENSED',
     version: '0.1.0',
     scripts: {
-      lint: "eslint --fix '**/*.{ts,tsx,js,jsx}' && prettier --write .",
+      lint: "eslint --fix '**/*.{ts,tsx,js,jsx}' && prettier --write . && sort-package-json",
       test: 'ts-node src/index.ts',
     },
   };
@@ -24,7 +25,7 @@ export const base = async () => {
   await run(`
     yarn add --dev yarn-upgrade-all typescript @types/node ts-node
     yarn add --dev eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint-config-alloy
-    yarn add --dev prettier eslint-plugin-prettier eslint-config-prettier 
+    yarn add --dev prettier eslint-plugin-prettier eslint-config-prettier sort-package-json
   `);
   ensure('README.md', '# Untitled App');
   ensure(join('src', 'index.ts'), "console.log('Hello world!');");
