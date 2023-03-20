@@ -17,3 +17,15 @@ export const append = (filePath: string, content: string) => {
     appendFileSync(filePath, content.trim() + '\n');
   }
 };
+
+// replace content, assume file exists
+export const replace = (filePath: string, content: string, replacement: string) => {
+  let fileContent = readFileSync(filePath, 'utf-8');
+  fileContent = fileContent.replace(content, replacement);
+  writeFileSync(filePath, fileContent);
+};
+
+// overwrite the file content
+export const overwrite = (filePath: string, content: string) => {
+  writeFileSync(filePath, content.trim() + '\n');
+};
