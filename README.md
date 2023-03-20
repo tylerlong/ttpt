@@ -41,3 +41,7 @@ or
 ```
 yarn ttot --electron
 ```
+
+## Todo
+
+Add test cases to web and electron app templates.
