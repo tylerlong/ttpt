@@ -44,4 +44,6 @@ yarn ttot --electron
 
 ## Todo
 
-Add test cases to web and electron app templates.
+- Add test cases to web and electron app templates.
+- Add default icon to electron app
+- Web app, dev env, click the button 9 times, and there is a warning in the console.

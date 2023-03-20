@@ -7,6 +7,11 @@ export const electron = async () => {
   await run('yarn add --dev electron electron-builder@next nodemon shell-commands');
   const pkgJson = {
     productName: 'Untitled App',
+    description: 'An untitled app.',
+    author: {
+      name: 'Mac Mate',
+      email: 'support@macmate.app',
+    },
     scripts: {
       watch: 'ts-node scripts/watch.ts',
       start: "nodemon --watch build/electron.js --exec 'electron .'",
