@@ -29,3 +29,15 @@ or
 ```
 yarn ttpt --web
 ```
+
+### Generate an electron project
+
+```
+yarn ttpt -e
+```
+
+or
+
+```
+yarn ttot --electron
+```
