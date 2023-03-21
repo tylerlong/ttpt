@@ -3,7 +3,7 @@ import { run } from 'shell-commands';
 
 import { base } from './base';
 import { web } from './web';
-import { electron } from './electron';
+import { electron } from './electron/index';
 
 const projectTypes = {
   base: [base],
