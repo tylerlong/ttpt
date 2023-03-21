@@ -1,4 +1,4 @@
-import { appendFileSync, existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
 import { dirname } from 'path';
 
 // create the file only if it doesn't exist
@@ -10,21 +10,32 @@ export const ensure = (filePath: string, content: string) => {
   writeFileSync(filePath, content.trim() + '\n');
 };
 
-// append content to file, assume file exists
-export const append = (filePath: string, content: string) => {
-  const fileContent = readFileSync(filePath, 'utf-8');
-  if (fileContent.indexOf(content.trim()) === -1) {
-    appendFileSync(filePath, content.trim() + '\n');
-  }
+/**
+ * Get non-empty trimed lines of the content.
+ * @param content the content to be split into lines
+ * @returns non-empty trimed lines
+ */
+const lines = (content: string) => {
+  return content
+    .split(/\n/g)
+    .map((line) => line.trim())
+    .filter((line) => line.length > 0);
 };
 
-// replace content, assume file exists
+/**
+ * Replace the content in the file.
+ * Please note that, it is not a simple replace, it will remove the content first, then add the replacement.
+ * What's more, it's done line by line, so it's safe to use it with a multi-line content.
+ * @param filePath the file path
+ * @param content the content to be replaced
+ * @param replacement the replacement
+ */
 export const replace = (filePath: string, content: string, replacement: string) => {
   let fileContent = readFileSync(filePath, 'utf-8');
-  for (const line of content.split(/\n/g)) {
+  for (const line of lines(content)) {
     fileContent = fileContent.replace(line + '\n', '');
   }
-  for (const line of replacement.split(/\n/g)) {
+  for (const line of lines(replacement)) {
     if (fileContent.indexOf(line) === -1) {
       fileContent += line + '\n';
     }

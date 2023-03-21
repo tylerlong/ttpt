@@ -3,19 +3,20 @@ import { merge } from 'lodash';
 import { join } from 'path';
 import { run } from 'shell-commands';
 
-import { append, ensure } from './utils';
+import { replace, ensure } from './utils';
 
 export const web = async () => {
-  append(
+  replace(
     '.gitignore',
+    '',
     `
 .parcel-cache/
 docs/
   `,
   );
-  append('.eslintignore', 'docs/');
-  append('.prettierignore', 'docs/');
-  append('.ackrc', '--ignore-dir=docs');
+  replace('.eslintignore', '', 'docs/');
+  replace('.prettierignore', '', 'docs/');
+  replace('.ackrc', '', '--ignore-dir=docs');
 
   await run(`
     yarn add --dev antd react react-dom @tylerlong/use-proxy @types/react-dom parcel 
