@@ -1,7 +1,8 @@
-import { readFileSync, writeFileSync } from 'fs';
+import { cpSync, existsSync, readFileSync, writeFileSync } from 'fs';
 import { merge } from 'lodash';
+import { join } from 'path';
 import { run } from 'shell-commands';
-import { ensure, overwrite, replace } from './utils';
+import { ensure, overwrite, replace } from '../utils';
 
 export const electron = async () => {
   await run('yarn add --dev electron electron-builder@next nodemon shell-commands');
@@ -51,7 +52,7 @@ export default config;
   `,
   );
 
-  replace('.gitignore', 'docs/', 'build/\ndist/');
+  replace('.gitignore', 'docs/', 'build/\ndist/\n.DS_Store');
   replace('.prettierignore', 'docs/', 'build/\ndist/');
   replace('.eslintignore', 'docs/', 'build/\ndist/');
   replace('.ackrc', '--ignore-dir=docs', '--ignore-dir=build\n--ignore-dir=dist');
@@ -147,4 +148,8 @@ window.addEventListener('DOMContentLoaded', () => {
 });
   `,
   );
+
+  if (!existsSync('icon.png')) {
+    cpSync(join(__dirname, 'icon.png'), 'icon.png');
+  }
 };
