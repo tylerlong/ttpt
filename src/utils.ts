@@ -21,7 +21,11 @@ export const append = (filePath: string, content: string) => {
 // replace content, assume file exists
 export const replace = (filePath: string, content: string, replacement: string) => {
   let fileContent = readFileSync(filePath, 'utf-8');
-  fileContent = fileContent.replace(content, replacement);
+  if (fileContent.indexOf(replacement) === -1) {
+    fileContent = fileContent.replace(content, replacement);
+  } else {
+    fileContent = fileContent.replace(content + '\n', '');
+  }
   writeFileSync(filePath, fileContent);
 };
 

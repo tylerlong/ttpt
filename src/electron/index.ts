@@ -1,4 +1,4 @@
-import { cpSync, existsSync, readFileSync, writeFileSync } from 'fs';
+import { copyFileSync, existsSync, readFileSync, writeFileSync } from 'fs';
 import { merge } from 'lodash';
 import { join } from 'path';
 import { run } from 'shell-commands';
@@ -150,6 +150,6 @@ window.addEventListener('DOMContentLoaded', () => {
   );
 
   if (!existsSync('icon.png')) {
-    cpSync(join(__dirname, 'icon.png'), 'icon.png');
+    copyFileSync(join(__dirname, 'icon.png'), 'icon.png');
   }
 };
