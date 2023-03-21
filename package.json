@@ -1,10 +1,10 @@
 {
   "license": "MIT",
-  "version": "0.4.5",
+  "version": "0.4.6",
   "scripts": {
     "lint": "eslint --fix '**/*.{ts,tsx,js,jsx}' && prettier --write .",
     "test": "rm -rf demo && mkdir demo && cd demo && ts-node ../src/index.ts -e && ts-node ../src/index.ts -e",
-    "prepublishOnly": "tsc src/index.ts --outDir lib && cp src/electron/icon.png lib/electron/"
+    "prepublishOnly": "tsc src/index.ts --outDir lib"
   },
   "name": "ttpt",
   "bin": {

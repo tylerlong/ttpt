@@ -150,6 +150,6 @@ window.addEventListener('DOMContentLoaded', () => {
   );
 
   if (!existsSync('icon.png')) {
-    copyFileSync(join(__dirname, 'icon.png'), 'icon.png');
+    copyFileSync(join('node_modules', 'ttpt', 'src', 'electron', 'icon.png'), 'icon.png');
   }
 };

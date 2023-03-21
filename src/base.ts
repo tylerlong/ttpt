@@ -23,7 +23,7 @@ export const base = async () => {
     writeFileSync('package.json', JSON.stringify(pkgJson, null, 2));
   }
   await run(`
-    yarn add --dev yarn-upgrade-all typescript @types/node ts-node
+    yarn add --dev ttpt yarn-upgrade-all typescript @types/node ts-node
     yarn add --dev eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint-config-alloy
     yarn add --dev prettier eslint-plugin-prettier eslint-config-prettier sort-package-json
   `);
