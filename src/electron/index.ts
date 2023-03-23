@@ -17,7 +17,8 @@ export const electron = async () => {
       watch: 'ts-node scripts/watch.ts',
       start: "nodemon --watch build/electron.js --exec 'electron .'",
       build: 'rm -rf build && parcel build',
-      'pack:mac': 'yarn build && rm -rf dist && yarn electron-builder --universal --dir --config electron-builder.ts',
+      'pack:mac':
+        'yarn build && rm -rf dist && yarn electron-builder --universal --dir --config electron-builder.ts -c.mac.identity=null',
     },
     main: 'build/electron.js',
     targets: {
