@@ -119,7 +119,7 @@ app.on('window-all-closed', () => {
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline';" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' data:;" />
     <title>Untitled App</title>
     <link rel="stylesheet" href="index.css" />
   </head>
