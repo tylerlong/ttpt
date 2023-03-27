@@ -3,10 +3,10 @@ import { merge } from 'lodash';
 import { join } from 'path';
 import { run } from 'shell-commands';
 
-import { replace, ensure } from './utils';
+import { adjust, ensure } from './utils';
 
 export const web = async () => {
-  replace(
+  adjust(
     '.gitignore',
     '',
     `
@@ -14,9 +14,9 @@ export const web = async () => {
 docs/
   `,
   );
-  replace('.eslintignore', '', 'docs/');
-  replace('.prettierignore', '', 'docs/');
-  replace('.ackrc', '', '--ignore-dir=docs');
+  adjust('.eslintignore', '', 'docs/');
+  adjust('.prettierignore', '', 'docs/');
+  adjust('.ackrc', '', '--ignore-dir=docs');
 
   await run(`
     yarn add --dev antd react react-dom @tylerlong/use-proxy @types/react-dom parcel 

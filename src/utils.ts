@@ -23,14 +23,14 @@ const lines = (content: string) => {
 };
 
 /**
- * Replace the content in the file.
- * Please note that, it is not a simple replace, it will remove the content first, then add the replacement.
+ * Adjust the content in the file.
+ * Please note that, it will remove the content first, then add the replacement.
  * What's more, it's done line by line, so it's safe to use it with a multi-line content.
  * @param filePath the file path
  * @param content the content to be replaced
  * @param replacement the replacement
  */
-export const replace = (filePath: string, content: string, replacement: string) => {
+export const adjust = (filePath: string, content: string, replacement: string) => {
   let fileContent = readFileSync(filePath, 'utf-8');
   for (const line of lines(content)) {
     fileContent = fileContent.replace(line + '\n', '');

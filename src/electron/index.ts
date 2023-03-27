@@ -2,7 +2,7 @@ import { copyFileSync, existsSync, readFileSync, writeFileSync } from 'fs';
 import { merge } from 'lodash';
 import { join } from 'path';
 import { run } from 'shell-commands';
-import { ensure, overwrite, replace } from '../utils';
+import { ensure, overwrite, adjust } from '../utils';
 
 export const electron = async () => {
   await run('yarn add --dev electron electron-builder@next nodemon shell-commands');
@@ -23,8 +23,13 @@ export const electron = async () => {
     main: 'build/electron.js',
     targets: {
       electron: {
-        source: ['src/electron.ts', 'src/preload.ts'],
+        source: 'src/electron.ts',
         context: 'electron-main',
+        distDir: 'build',
+      },
+      preload: {
+        source: 'src/preload.ts',
+        context: 'node',
         distDir: 'build',
       },
       web: {
@@ -53,10 +58,10 @@ export default config;
   `,
   );
 
-  replace('.gitignore', 'docs/', 'build/\ndist/\n.DS_Store');
-  replace('.prettierignore', 'docs/', 'build/\ndist/');
-  replace('.eslintignore', 'docs/', 'build/\ndist/');
-  replace('.ackrc', '--ignore-dir=docs', '--ignore-dir=build\n--ignore-dir=dist');
+  adjust('.gitignore', 'docs/', 'build/\ndist/\n.DS_Store');
+  adjust('.prettierignore', 'docs/', 'build/\ndist/');
+  adjust('.eslintignore', 'docs/', 'build/\ndist/');
+  adjust('.ackrc', '--ignore-dir=docs', '--ignore-dir=build\n--ignore-dir=dist');
 
   ensure(
     'scripts/watch.ts',
@@ -65,6 +70,7 @@ import { run } from 'shell-commands';
 
 const main = async () => {
   await run('rm -rf build');
+  run("nodemon --watch src/preload.ts --exec 'parcel build --target preload'");
   run('parcel src/index.html --dist-dir build -p 1234');
   run('parcel watch --target electron -p 1235');
 };
@@ -76,8 +82,10 @@ main();
   ensure(
     'src/electron.ts',
     `
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, ipcMain } from 'electron';
 import { join } from 'path';
+
+import CONSTS from './constants';
 
 const createWindow = () => {
   const mainWindow = new BrowserWindow({
@@ -110,6 +118,10 @@ app.on('window-all-closed', () => {
     app.quit();
   }
 });
+
+ipcMain.handle(CONSTS.HELLO_TO_MAIN, (event, name) => {
+  console.log('Hello from render', name);
+});
   `,
   );
 
@@ -134,9 +146,59 @@ app.on('window-all-closed', () => {
   `,
   );
 
+  overwrite(
+    'src/app.tsx',
+    `
+import React from 'react';
+import { Button, Space, Typography } from 'antd';
+import { auto } from '@tylerlong/use-proxy/lib/react';
+
+import { Store } from './store';
+
+const { Text, Title } = Typography;
+
+const App = (props: { store: Store }) => {
+  const { store } = props;
+  const render = () => (
+    <>
+      <Title>Untitled App</Title>
+      <Space>
+        <Button
+          onClick={() => {
+            store.count -= 1;
+          }}
+        >
+          -
+        </Button>
+        <Text>{store.count}</Text>
+        <Button
+          onClick={() => {
+            store.count += 1;
+          }}
+        >
+          +
+        </Button>
+        <Button onClick={() => global.electronAPI.hello('Tyler')}>Hello</Button>
+      </Space>
+    </>
+  );
+  return auto(render, props);
+};
+
+export default App;
+  `,
+  );
+
   ensure(
     'src/preload.ts',
     `
+import { contextBridge, ipcRenderer } from 'electron';
+import CONSTS from './constants';
+
+contextBridge.exposeInMainWorld('electronAPI', {
+  hello: (name: string) => ipcRenderer.invoke(CONSTS.HELLO_TO_MAIN, name),
+});
+
 window.addEventListener('DOMContentLoaded', () => {
   const replaceText = (selector, text) => {
     const element = document.getElementById(selector);
@@ -148,6 +210,17 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 });
   `,
+  );
+
+  ensure(
+    'src/constants.ts',
+    `
+const CONSTS = {
+  HELLO_TO_MAIN: 'HELLO_TO_MAIN',
+};
+
+export default CONSTS;
+`,
   );
 
   if (!existsSync('icon.png')) {
