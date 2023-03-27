@@ -39,7 +39,7 @@ yarn ttpt -e
 or
 
 ```
-yarn ttot --electron
+yarn ttpt --electron
 ```
 
 ## Todo
