@@ -10,6 +10,7 @@ export const base = async () => {
     name: 'untitled-app',
     license: 'UNLICENSED',
     version: '0.1.0',
+    private: true,
     scripts: {
       lint: "eslint --fix '**/*.{ts,tsx,js,jsx}' && prettier --write . && sort-package-json",
       test: 'ts-node src/index.ts',
