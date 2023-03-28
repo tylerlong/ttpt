@@ -119,8 +119,9 @@ app.on('window-all-closed', () => {
   }
 });
 
-ipcMain.handle(CONSTS.HELLO_TO_MAIN, (event, name) => {
-  console.log('Hello from render', name);
+ipcMain.handle(CONSTS.HELLO_TO_ELECTRON, (event, message) => {
+  console.log(message);
+  event.sender.send(CONSTS.HELLO_TO_WEB, 'Hello from main');
 });
   `,
   );
@@ -149,39 +150,50 @@ ipcMain.handle(CONSTS.HELLO_TO_MAIN, (event, name) => {
   overwrite(
     'src/app.tsx',
     `
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button, Space, Typography } from 'antd';
 import { auto } from '@tylerlong/use-proxy/lib/react';
 
 import { Store } from './store';
+import CONSTS from './constants';
 
 const { Text, Title } = Typography;
 
 const App = (props: { store: Store }) => {
-  const { store } = props;
-  const render = () => (
-    <>
-      <Title>Untitled App</Title>
-      <Space>
-        <Button
-          onClick={() => {
-            store.count -= 1;
-          }}
-        >
-          -
-        </Button>
-        <Text>{store.count}</Text>
-        <Button
-          onClick={() => {
-            store.count += 1;
-          }}
-        >
-          +
-        </Button>
-        <Button onClick={() => global.electronAPI.hello('Tyler')}>Hello</Button>
-      </Space>
-    </>
-  );
+  useEffect(() => {
+    const removeListner = global.ipc.on(CONSTS.HELLO_TO_WEB, (event: any, args: any) => {
+      console.log(args);
+    });
+    return () => {
+      removeListner();
+    };
+  }, []);
+  const render = () => {
+    const { store } = props;
+    return (
+      <>
+        <Title>Untitled App</Title>
+        <Space>
+          <Button
+            onClick={() => {
+              store.count -= 1;
+            }}
+          >
+            -
+          </Button>
+          <Text>{store.count}</Text>
+          <Button
+            onClick={() => {
+              store.count += 1;
+            }}
+          >
+            +
+          </Button>
+          <Button onClick={() => global.ipc.invoke(CONSTS.HELLO_TO_ELECTRON, 'Hello from renderer')}>Hello</Button>
+        </Space>
+      </>
+    );
+  };
   return auto(render, props);
 };
 
@@ -193,10 +205,13 @@ export default App;
     'src/preload.ts',
     `
 import { contextBridge, ipcRenderer } from 'electron';
-import CONSTS from './constants';
 
-contextBridge.exposeInMainWorld('electronAPI', {
-  hello: (name: string) => ipcRenderer.invoke(CONSTS.HELLO_TO_MAIN, name),
+contextBridge.exposeInMainWorld('ipc', {
+  invoke: (channel: string, ...args: any[]) => ipcRenderer.invoke(channel, ...args),
+  on: (channel: string, listener: (...args: any[]) => void) => {
+    ipcRenderer.on(channel, listener);
+    return () => ipcRenderer.removeListener(channel, listener);
+  },
 });
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -216,11 +231,22 @@ window.addEventListener('DOMContentLoaded', () => {
     'src/constants.ts',
     `
 const CONSTS = {
-  HELLO_TO_MAIN: 'HELLO_TO_MAIN',
+  HELLO_TO_ELECTRON: 'HELLO_TO_ELECTRON',
+  HELLO_TO_WEB: 'HELLO_TO_WEB',
 };
 
 export default CONSTS;
 `,
+  );
+
+  ensure(
+    'src/types.d.ts',
+    `
+declare namespace ipc {
+  function invoke(channel: string, ...args: any[]): Promise<any>;
+  function on(channel: string, listener: (...args: any[]) => void): () => void;
+}
+  `,
   );
 
   if (!existsSync('icon.png')) {
