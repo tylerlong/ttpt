@@ -19,7 +19,7 @@ docs/
   adjust('.ackrc', '', '--ignore-dir=docs');
 
   await run(`
-    yarn add --dev antd react react-dom @tylerlong/use-proxy @types/react-dom parcel 
+    yarn add --dev antd react react-dom manate @types/react-dom parcel 
   `);
 
   const pkgJson = {
@@ -56,7 +56,7 @@ root.render(
     `
 import React from 'react';
 import { Button, Space, Typography } from 'antd';
-import { auto } from '@tylerlong/use-proxy/lib/react';
+import { auto } from 'manate/react';
 
 import { Store } from './store';
 
@@ -120,13 +120,13 @@ body {
   ensure(
     join('src', 'store.ts'),
     `
-import { useProxy } from '@tylerlong/use-proxy';
+import { manage } from 'manate';
 
 export class Store {
   public count = 0;
 }
 
-const store = useProxy(new Store());
+const store = manage(new Store());
 
 export default store;  
   `,

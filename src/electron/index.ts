@@ -152,7 +152,7 @@ ipcMain.handle(CONSTS.HELLO_TO_ELECTRON, (event, message) => {
     `
 import React, { useEffect } from 'react';
 import { Button, Space, Typography } from 'antd';
-import { auto } from '@tylerlong/use-proxy/lib/react';
+import { auto } from 'manate/react';
 
 import { Store } from './store';
 import CONSTS from './constants';
