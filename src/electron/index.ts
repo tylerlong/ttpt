@@ -10,7 +10,7 @@ export const electron = async () => {
     productName: 'Untitled App',
     description: 'An untitled app.',
     author: {
-      name: 'Mac Mate',
+      name: 'MacMate.app',
       email: 'support@macmate.app',
     },
     scripts: {
