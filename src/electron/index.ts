@@ -5,7 +5,7 @@ import { run } from 'shell-commands';
 import { ensure, overwrite, adjust } from '../utils';
 
 export const electron = async () => {
-  await run('yarn add --dev electron electron-builder@next nodemon shell-commands');
+  await run('yarn add --dev electron electron-builder nodemon shell-commands');
   const pkgJson = {
     productName: 'Untitled App',
     description: 'An untitled app.',
@@ -17,9 +17,12 @@ export const electron = async () => {
       watch: 'ts-node scripts/watch.ts',
       start: "nodemon --watch build/electron.js --exec 'electron .'",
       build: 'rm -rf .parcel-cache && rm -rf build && parcel build --no-source-maps',
-      mac: 'yarn build && rm -rf dist && yarn electron-builder --universal --dir --config electron-builder.ts -c.mac.identity=null',
+      mac: 'yarn build && rm -rf dist && yarn electron-builder --universal --dir -c.mac.identity=null',
     },
     main: 'build/electron.js',
+    build: {
+      files: ['build'],
+    },
     targets: {
       electron: {
         source: 'src/electron.ts',
@@ -42,20 +45,6 @@ export const electron = async () => {
   let originalPkg = JSON.parse(readFileSync('package.json', 'utf-8'));
   delete originalPkg.scripts.serve;
   writeFileSync('package.json', JSON.stringify(merge(pkgJson, originalPkg), null, 2));
-
-  ensure(
-    'electron-builder.ts',
-    `
-import { Configuration } from 'electron-builder';
-
-const config: Configuration = {
-  appId: 'app.macmate.untitled-app',
-  files: ['build'],
-};
-
-export default config;
-  `,
-  );
 
   adjust('.gitignore', 'docs/', 'build/\ndist/\n.DS_Store');
   adjust('.prettierignore', 'docs/', 'build/\ndist/');
