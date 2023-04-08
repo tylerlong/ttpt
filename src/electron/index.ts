@@ -80,8 +80,8 @@ import CONSTS from './constants';
 
 const createWindow = () => {
   const mainWindow = new BrowserWindow({
-    width: 1280,
-    height: 800,
+    width: 1440,
+    height: 928,
     webPreferences: {
       preload: join(__dirname, '..', 'build', 'preload.js'),
     },
