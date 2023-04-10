@@ -128,10 +128,6 @@ ipcMain.handle(CONSTS.HELLO_TO_ELECTRON, (event, message) => {
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
-    <p>
-      We are using Node.js <span id="node-version"></span>, Chromium <span id="chrome-version"></span>, and Electron
-      <span id="electron-version"></span>.
-    </p>
     <script type="module" src="index.tsx"></script>
   </body>
 </html>  
@@ -203,17 +199,6 @@ contextBridge.exposeInMainWorld('ipc', {
     ipcRenderer.on(channel, listener);
     return () => ipcRenderer.removeListener(channel, listener);
   },
-});
-
-window.addEventListener('DOMContentLoaded', () => {
-  const replaceText = (selector, text) => {
-    const element = document.getElementById(selector);
-    if (element) element.innerText = text;
-  };
-
-  for (const type of ['chrome', 'node', 'electron']) {
-    replaceText(\`\${type}-version\`, process.versions[type]);
-  }
 });
   `,
   );
