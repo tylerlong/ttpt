@@ -131,4 +131,15 @@ const store = manage(new Store());
 export default store;  
   `,
   );
+  ensure(
+    'tsconfig.json',
+    `
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "jsx": "react"
+  }
+}
+  `,
+  );
 };

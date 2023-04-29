@@ -216,7 +216,7 @@ export default CONSTS;
   );
 
   ensure(
-    'src/types.d.ts',
+    'src/Globals.d.ts',
     `
 declare namespace ipc {
   function invoke(channel: string, ...args: any[]): Promise<any>;
