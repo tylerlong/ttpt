@@ -1,14 +1,14 @@
 {
-  "license": "MIT",
-  "version": "0.6.5",
-  "scripts": {
-    "lint": "eslint --fix '**/*.{ts,tsx,js,jsx}' && prettier --write .",
-    "test": "rm -rf demo && mkdir demo && cd demo && ts-node ../src/index.ts -e && ts-node ../src/index.ts -e",
-    "prepublishOnly": "rm -rf lib && tsc src/index.ts --outDir lib"
-  },
   "name": "ttpt",
+  "version": "0.6.6",
+  "license": "MIT",
   "bin": {
     "ttpt": "./lib/index.js"
+  },
+  "scripts": {
+    "lint": "eslint --fix '**/*.{ts,tsx,js,jsx}' && prettier --write . && sort-package-json",
+    "prepublishOnly": "rm -rf lib && tsc src/index.ts --outDir lib",
+    "test": "rm -rf demo && mkdir demo && cd demo && ts-node ../src/index.ts -e && ts-node ../src/index.ts -e"
   },
   "dependencies": {
     "lodash": "^4.17.21",
@@ -24,6 +24,7 @@
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
     "prettier": "^3.0.3",
+    "sort-package-json": "^2.5.1",
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2",
     "yarn-upgrade-all": "^0.7.2"

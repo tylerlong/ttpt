@@ -6,15 +6,14 @@ import { web } from './web';
 import { electron } from './electron/index';
 
 const projectTypes = {
-  base: [base],
-  web: [base, web],
-  electron: [base, web, electron],
+  base: [],
+  web: [web],
+  electron: [web, electron],
 };
 
 const main = async () => {
-  await base();
-
   const inputs = new Set(process.argv);
+  await base(inputs);
   let projectType: 'base' | 'web' | 'electron' = 'base';
   if (inputs.has('-w') || inputs.has('--web')) {
     projectType = 'web';

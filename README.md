@@ -42,6 +42,19 @@ or
 yarn ttpt --electron
 ```
 
+## Options
+
+```
+yarn ttpt -W
+```
+
+`-W` is the `--ignore-workspace-root-check` option for `yarn add` commands.
+
+Ref: https://classic.yarnpkg.com/lang/en/docs/cli/add/#toc-yarn-add-ignore-workspace-root-check-w
+
+For now, only the default project type supports it.
+Because the other project types doesn't have to be in a yarn workspace.
+
 ## Todo
 
 - Add test cases to web and electron app templates.
