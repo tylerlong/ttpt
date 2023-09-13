@@ -58,5 +58,4 @@ Because the other project types doesn't have to be in a yarn workspace.
 ## Todo
 
 - Add test cases to web and electron app templates.
-- Add default icon to electron app
 - Web app, dev env, click the button 9 times, and there is a warning in the console.
