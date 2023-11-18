@@ -19,9 +19,6 @@ export const electron = async () => {
       release: 'ts-node -r dotenv-override-true/config scripts/release.ts',
     },
     main: 'build/electron.js',
-    build: {
-      files: ['build'],
-    },
     targets: {
       electron: {
         source: 'src/electron.ts',
@@ -89,10 +86,11 @@ main();
       rm -rf dist
     \`);
     const inputs = new Set(process.argv);
+    const files = ['build'];
     if (inputs.has('--dir')) {
       await electronBuild({
         config: {
-          files: ['build'],
+          files,
           mac: {
             identity: null,
             target: ['dir'],
@@ -102,7 +100,7 @@ main();
     } else if (inputs.has('--github')) {
       await electronBuild({
         config: {
-          files: ['build'],
+          files,
           mac: {
             notarize: {
               teamId: process.env.APPLE_TEAM_ID,
@@ -128,9 +126,9 @@ main();
   APPLE_ID=xxx@yyy.com
   APPLE_APP_SPECIFIC_PASSWORD=zzz
   
-  # Apple "Developer ID Application" certificate
+  # Apple "Developer ID Application" certificate, other certs won't work
   # You need to do it on a laptop which has the private key, so that you can expirt the cert as p12 format
-  # Then conver the p12 cert to base64 format
+  # Then convert the p12 cert to base64 format
   CSC_LINK=xxx
   CSC_KEY_PASSWORD=yyy
   # team id is the value shown in the certificate's full name, such as "Developer ID Application: FirstName LastName (Team_ID_Here)"

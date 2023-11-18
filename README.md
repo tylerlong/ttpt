@@ -75,4 +75,7 @@ Because the other project types don't have to be in a yarn workspace.
 ## Todo
 
 - Add test cases to web and electron app templates.
-- Web app, dev env, click the button 9 times, and there is a warning in the console.
+- support electron settings page (change theme, etc.)
+- Support electron app auto-update.
+- Support electron app test case and auto-take screenshots
+- Support electron universal app (arm + intel)
