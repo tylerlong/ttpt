@@ -42,6 +42,23 @@ or
 yarn ttpt --electron
 ```
 
+In the generated project, you can run:
+
+```
+yarn release --dir
+```
+
+to generate a release version of the app into a directory.
+
+You can run:
+
+```
+yarn release --github
+```
+
+to release the app to GitHub.
+
+
 ## Options
 
 ```
@@ -53,7 +70,7 @@ yarn ttpt -W
 Ref: https://classic.yarnpkg.com/lang/en/docs/cli/add/#toc-yarn-add-ignore-workspace-root-check-w
 
 For now, only the default project type supports it.
-Because the other project types doesn't have to be in a yarn workspace.
+Because the other project types don't have to be in a yarn workspace.
 
 ## Todo
 

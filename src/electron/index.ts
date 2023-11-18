@@ -16,8 +16,7 @@ export const electron = async () => {
     scripts: {
       watch: 'ts-node scripts/watch.ts',
       start: "nodemon --watch build/electron.js --exec 'electron .'",
-      build: 'rm -rf .parcel-cache && rm -rf build && parcel build --no-source-maps',
-      mac: 'yarn build && rm -rf dist && yarn electron-builder --dir -c.mac.identity=null',
+      release: 'ts-node -r dotenv-override-true/config scripts/release.ts',
     },
     main: 'build/electron.js',
     build: {
@@ -68,6 +67,75 @@ const main = async () => {
 
 main();
   `,
+  );
+
+  ensure(
+    'scripts/release.ts',
+    `
+  import { build as electronBuild } from 'electron-builder';
+  import { run } from 'shell-commands';
+  
+  const build = async () => {
+    await run(\`
+      rm -rf .parcel-cache
+      rm -rf build
+      parcel build --no-source-maps
+    \`);
+  };
+  
+  const main = async () => {
+    await build();
+    await run(\`
+      rm -rf dist
+    \`);
+    const inputs = new Set(process.argv);
+    if (inputs.has('--dir')) {
+      await electronBuild({
+        config: {
+          files: ['build'],
+          mac: {
+            identity: null,
+            target: ['dir'],
+          },
+        },
+      });
+    } else if (inputs.has('--github')) {
+      await electronBuild({
+        config: {
+          files: ['build'],
+          mac: {
+            notarize: {
+              teamId: process.env.APPLE_TEAM_ID,
+            },
+          },
+        },
+      });
+    }
+  };
+  main();
+  `,
+  );
+
+  adjust(
+    '.env',
+    '',
+    `
+  # Upload to GitHub: https://github.com/settings/tokens
+  GH_TOKEN=xxx
+  
+  # Notarize by Apple server
+  # App-Specific Passwords could be found here: https://appleid.apple.com/account/manage
+  APPLE_ID=xxx@yyy.com
+  APPLE_APP_SPECIFIC_PASSWORD=zzz
+  
+  # Apple "Developer ID Application" certificate
+  # You need to do it on a laptop which has the private key, so that you can expirt the cert as p12 format
+  # Then conver the p12 cert to base64 format
+  CSC_LINK=xxx
+  CSC_KEY_PASSWORD=yyy
+  # team id is the value shown in the certificate's full name, such as "Developer ID Application: FirstName LastName (Team_ID_Here)"
+  APPLE_TEAM_ID=zzz
+`,
   );
 
   ensure(
