@@ -1,6 +1,6 @@
 {
   "name": "ttpt",
-  "version": "0.6.6",
+  "version": "0.6.7",
   "license": "MIT",
   "bin": {
     "ttpt": "./lib/index.js"
@@ -15,16 +15,16 @@
     "shell-commands": "^0.3.0"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.198",
-    "@types/node": "^20.6.0",
-    "@typescript-eslint/eslint-plugin": "^6.7.0",
-    "@typescript-eslint/parser": "^6.7.0",
-    "eslint": "^8.49.0",
+    "@types/lodash": "^4.14.201",
+    "@types/node": "^20.9.1",
+    "@typescript-eslint/eslint-plugin": "^6.11.0",
+    "@typescript-eslint/parser": "^6.11.0",
+    "eslint": "^8.54.0",
     "eslint-config-alloy": "^5.1.2",
     "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-prettier": "^5.0.0",
-    "prettier": "^3.0.3",
-    "sort-package-json": "^2.5.1",
+    "eslint-plugin-prettier": "^5.0.1",
+    "prettier": "^3.1.0",
+    "sort-package-json": "^2.6.0",
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2",
     "yarn-upgrade-all": "^0.7.2"
