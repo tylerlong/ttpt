@@ -24,7 +24,7 @@ docs/
 
   const pkgJson = {
     scripts: {
-      serve: 'parcel src/index.html --dist-dir docs',
+      serve: 'rm -rf .parcel-cache && parcel src/index.html --dist-dir docs',
     },
   };
   let originalPkg = JSON.parse(readFileSync('package.json', 'utf-8'));
