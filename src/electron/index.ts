@@ -98,14 +98,31 @@ main();
         },
       });
     } else if (inputs.has('--github')) {
+      // release macOS versions
       await electronBuild({
+        arm64: true,
+        x64: true,
+        universal: true,
+        mac: ['default'],
         config: {
           files,
+          // publish: null, // publish or not
           mac: {
+            // identity: null, // code sign or not
             notarize: {
               teamId: process.env.APPLE_TEAM_ID,
             },
           },
+        },
+      });
+      // release Windows versions
+      await electronBuild({
+        arm64: true,
+        x64: true,
+        win: ['default'],
+        config: {
+          files,
+          // publish: null, // publish or not
         },
       });
     }

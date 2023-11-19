@@ -78,4 +78,4 @@ Because the other project types don't have to be in a yarn workspace.
 - support electron settings page (change theme, etc.)
 - Support electron app auto-update.
 - Support electron app test case and auto-take screenshots
-- Support electron universal app (arm + intel)
+- Release electron app to mas-dev and mas
