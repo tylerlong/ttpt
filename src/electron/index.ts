@@ -1,8 +1,9 @@
-import { copyFileSync, existsSync, readFileSync, writeFileSync } from 'fs';
+import { readFileSync, writeFileSync } from 'fs';
 import { merge } from 'lodash';
-import { join } from 'path';
 import { run } from 'shell-commands';
+
 import { ensure, overwrite, adjust } from '../utils';
+import misc from './misc';
 
 export const electron = async () => {
   await run(`
@@ -56,11 +57,6 @@ export const electron = async () => {
   let originalPkg = JSON.parse(readFileSync('package.json', 'utf-8'));
   delete originalPkg.scripts.serve;
   writeFileSync('package.json', JSON.stringify(merge(pkgJson, originalPkg), null, 2));
-
-  adjust('.gitignore', 'docs/', 'build/\ndist/\n.DS_Store');
-  adjust('.prettierignore', 'docs/', 'build/\ndist/');
-  adjust('.eslintignore', 'docs/', 'build/\ndist/');
-  adjust('.ackrc', '--ignore-dir=docs', '--ignore-dir=build\n--ignore-dir=dist');
 
   ensure(
     'scripts/watch.ts',
@@ -685,7 +681,5 @@ export default CONSTS;
   `,
   );
 
-  if (!existsSync('icon.png')) {
-    copyFileSync(join('node_modules', 'ttpt', 'src', 'electron', 'icon.png'), 'icon.png');
-  }
+  misc();
 };

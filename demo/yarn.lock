@@ -4689,10 +4689,10 @@ tslib@^2.4.0, tslib@^2.5.0, tslib@^2.6.0:
   resolved "https://registry.npmjs.org/tslib/-/tslib-2.6.2.tgz#703ac29425e7b37cd6fd456e92404d46d1f3e4ae"
   integrity sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==
 
-ttpt@^0.7.8:
-  version "0.7.8"
-  resolved "https://registry.npmjs.org/ttpt/-/ttpt-0.7.8.tgz#eaa3900bb0f4210f2c930b59f08e60af06e3252b"
-  integrity sha512-sdCwqNsqOra5KSu1S3cLPleD8Xp6cO5mVnOXtdJsk282zHygTb+aJEy1ml3vI8Fzj0G5fOhSLi+/MZGSWvPgTQ==
+ttpt@^0.7.9:
+  version "0.7.9"
+  resolved "https://registry.npmjs.org/ttpt/-/ttpt-0.7.9.tgz#990b99ebc733c2a8e13fe93391e4fe13c809486d"
+  integrity sha512-M6Gz7b/7CkdvlpcNeQ+FlVU+GKKMssDgbgEaLi2xkaEwKtXnTCCI1N+PaV/yOqTJkTKZK29gXT2m8ZdEvejheA==
   dependencies:
     lodash "^4.17.21"
     shell-commands "^0.3.0"
