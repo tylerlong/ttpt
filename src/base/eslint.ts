@@ -5,16 +5,14 @@ import { merge } from 'lodash';
 const step = () => {
   ensure(
     '.prettierrc.js',
-    `
-module.exports = {
+    `module.exports = {
   ...require('eslint-config-alloy/.prettierrc.js'),
 };
   `,
   );
   ensure(
     '.eslintrc.js',
-    `
-module.exports = {
+    `module.exports = {
   extends: ['alloy', 'alloy/typescript', 'prettier'],
   plugins: ['prettier'],
   rules: {

@@ -1,6 +1,5 @@
 import { existsSync, readFileSync, writeFileSync } from 'fs';
 import { merge } from 'lodash';
-import { join } from 'path';
 import { run } from 'shell-commands';
 
 import { ensure } from '../utils';
@@ -38,7 +37,7 @@ export const base = async (inputs: Set<string>) => {
   ensure('README.md', '# Untitled App');
   ensure('.env', 'NAME=Tyler Liu');
   // eslint-disable-next-line no-template-curly-in-string
-  ensure(join('src', 'index.ts'), 'console.log(`Hello ${process.env.NAME}!`);');
+  ensure('src/index.ts', 'console.log(`Hello ${process.env.NAME}!`);');
 
   for (const step of [misc, eslint]) {
     step();
