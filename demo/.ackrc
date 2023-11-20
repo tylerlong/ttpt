@@ -1,0 +1,4 @@
+--ignore-dir=node_modules
+--ignore-file=match:/^yarn\.lock$/
+--ignore-dir=build
+--ignore-dir=dist

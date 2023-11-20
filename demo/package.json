@@ -1,0 +1,80 @@
+{
+  "name": "untitled-app",
+  "version": "0.1.0",
+  "private": true,
+  "description": "An untitled app.",
+  "license": "UNLICENSED",
+  "author": {
+    "name": "MacMate.app",
+    "email": "support@macmate.app"
+  },
+  "main": "build/electron.js",
+  "scripts": {
+    "lint": "eslint --fix '**/*.{ts,tsx,js,jsx}' && prettier --write . && sort-package-json",
+    "release": "ts-node -r dotenv-override-true/config scripts/release.ts",
+    "start": "nodemon --watch build/electron.js --exec 'electron .'",
+    "watch": "ts-node scripts/watch.ts"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.201",
+    "@types/node": "^20.9.2",
+    "@types/react-dom": "^18.2.15",
+    "@typescript-eslint/eslint-plugin": "^6.11.0",
+    "@typescript-eslint/parser": "^6.11.0",
+    "antd": "^5.11.2",
+    "dotenv-override-true": "^6.2.2",
+    "electron": "^27.1.0",
+    "electron-application-menu-template": "^0.5.1",
+    "electron-builder": "^24.6.4",
+    "eslint": "^8.54.0",
+    "eslint-config-alloy": "^5.1.2",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "events": "^3.1.0",
+    "hyperid": "^3.1.1",
+    "manate": "^0.3.9",
+    "nodemon": "^3.0.1",
+    "parcel": "^2.10.3",
+    "prettier": "^3.1.0",
+    "process": "^0.11.10",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "shell-commands": "^0.3.0",
+    "sort-package-json": "^2.6.0",
+    "ts-node": "^10.9.1",
+    "ttpt": "^0.7.6",
+    "typescript": "^5.2.2",
+    "yarn-upgrade-all": "^0.7.2"
+  },
+  "productName": "Untitled App",
+  "targets": {
+    "electron": {
+      "source": "src/electron.ts",
+      "context": "electron-main",
+      "distDir": "build"
+    },
+    "preload": {
+      "source": "src/preload.ts",
+      "context": "node",
+      "distDir": "build"
+    },
+    "web": {
+      "source": "src/index.html",
+      "context": "browser",
+      "distDir": "build",
+      "publicUrl": ".",
+      "engines": {
+        "browsers": "last 2 Electron versions"
+      }
+    },
+    "settings": {
+      "source": "src/settings/settings.html",
+      "context": "browser",
+      "publicUrl": ".",
+      "distDir": "build",
+      "engines": {
+        "browsers": "last 2 Electron versions"
+      }
+    }
+  }
+}
