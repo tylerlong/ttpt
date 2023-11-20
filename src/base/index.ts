@@ -3,7 +3,7 @@ import { merge } from 'lodash';
 import { join } from 'path';
 import { run } from 'shell-commands';
 
-import { ensure } from './utils';
+import { ensure } from '../utils';
 
 export const base = async (inputs: Set<string>) => {
   const pkgJson = {

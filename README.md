@@ -75,7 +75,9 @@ Because the other project types don't have to be in a yarn workspace.
 ## Todo
 
 - Add test cases to web and electron app templates.
-- support electron settings page (change theme, etc.)
 - Support electron app auto-update.
 - Support electron app test case and auto-take screenshots
 - Release electron app to mas-dev and mas
+  - The latest sample project is "Assets Hosting"
+- Support document-based electron app
+  - '-d' or '--document'

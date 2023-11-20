@@ -3,7 +3,7 @@ import { merge } from 'lodash';
 import { join } from 'path';
 import { run } from 'shell-commands';
 
-import { adjust, ensure } from './utils';
+import { adjust, ensure } from '../utils';
 
 export const web = async () => {
   adjust(
