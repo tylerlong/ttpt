@@ -7,7 +7,7 @@ import type { Managed } from 'manate/models';
 import { debounce } from 'lodash';
 import hyperid from 'hyperid';
 
-import CONSTS from '../constants';
+import CONSTS from '../../constants';
 
 const uuid = hyperid();
 

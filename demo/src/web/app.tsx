@@ -3,7 +3,7 @@ import { Button, ConfigProvider, Space, Typography, theme } from 'antd';
 import { auto } from 'manate/react';
 
 import type { Store } from './store';
-import CONSTS from './constants';
+import CONSTS from '../constants';
 
 const { Text, Title } = Typography;
 

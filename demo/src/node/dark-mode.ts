@@ -1,6 +1,6 @@
 import { BrowserWindow, ipcMain, nativeTheme, systemPreferences } from 'electron';
 
-import CONSTS from './constants';
+import CONSTS from '../constants';
 
 export const toggleDarkMode = (browserWindow: BrowserWindow = undefined) => {
   let appearance = systemPreferences.getUserDefault('appearance', 'string');

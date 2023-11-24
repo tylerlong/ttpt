@@ -1,7 +1,7 @@
 import { BrowserWindow, ipcMain, screen, systemPreferences, app } from 'electron';
 import path from 'path';
 
-import CONSTS from './constants';
+import CONSTS from '../constants';
 import { toggleDarkMode } from './dark-mode';
 
 let settingsWindow: BrowserWindow;
@@ -14,7 +14,7 @@ export const showSettingsWindow = () => {
       minimizable: false,
       maximizable: false,
       webPreferences: {
-        preload: path.join(__dirname, '..', 'build', 'preload.js'),
+        preload: path.join(__dirname, '..', '..', 'build', 'preload.js'),
       },
     });
     settingsWindow.setAlwaysOnTop(true);
