@@ -72,6 +72,22 @@ Ref: https://classic.yarnpkg.com/lang/en/docs/cli/add/#toc-yarn-add-ignore-works
 For now, only the default project type supports it.
 Because the other project types don't have to be in a yarn workspace.
 
+
+## Dev Notes
+
+```
+✨ Built in 1.45s
+[Error: ENOENT: no such file or directory, open '/Users/tyler.liu/src/ts/ttpt-electron-demo/node_modules/src/util.ts'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/tyler.liu/src/ts/ttpt-electron-demo/node_modules/src/util.ts'
+}
+```
+
+The error is probably caused by https://github.com/cosmiconfig/cosmiconfig/issues/337
+
+
 ## Todo
 
 - Add test cases to web and electron app templates.
