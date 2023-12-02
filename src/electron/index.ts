@@ -21,9 +21,9 @@ export const electron = async () => {
       email: 'support@macmate.app',
     },
     scripts: {
-      watch: 'ts-node scripts/watch.ts',
+      watch: 'tsx scripts/watch.ts',
       start: "nodemon --watch build/electron.js --exec 'electron .'",
-      release: 'ts-node -r dotenv-override-true/config scripts/release.ts',
+      release: 'tsx -r dotenv-override-true/config scripts/release.ts',
     },
     main: 'build/electron.js',
     targets: {

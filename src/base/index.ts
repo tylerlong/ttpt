@@ -13,7 +13,7 @@ export const base = async (inputs: Set<string>) => {
     version: '0.1.0',
     private: true,
     scripts: {
-      test: 'ts-node -r dotenv-override-true/config src/index.ts',
+      test: 'tsx -r dotenv-override-true/config src/index.ts',
     },
   };
   if (existsSync('package.json')) {
@@ -28,7 +28,7 @@ export const base = async (inputs: Set<string>) => {
     workSpaceOption = ' -W';
   }
   await run(`
-    yarn add --dev${workSpaceOption} ttpt yarn-upgrade-all typescript @types/node ts-node
+    yarn add --dev${workSpaceOption} ttpt yarn-upgrade-all typescript @types/node tsx
     yarn add --dev${workSpaceOption} eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint-config-alloy
     yarn add --dev${workSpaceOption} prettier eslint-plugin-prettier eslint-config-prettier sort-package-json
     yarn add --dev${workSpaceOption} dotenv-override-true

@@ -1,33 +1,33 @@
 {
   "name": "ttpt",
-  "version": "0.8.0",
+  "version": "0.8.2",
   "license": "MIT",
   "bin": {
     "ttpt": "./lib/index.js"
   },
   "scripts": {
-    "baseTest": "rm -rf demo && mkdir demo && cd demo && ts-node ../src/index.ts -e",
+    "baseTest": "rm -rf demo && mkdir demo && cd demo && tsx ../src/index.ts -e",
     "lint": "eslint --fix '**/*.{ts,tsx,js,jsx}' && prettier --write . && sort-package-json",
     "prepublishOnly": "rm -rf lib && tsc src/index.ts --outDir lib",
-    "test": "rm -rf demo && mkdir demo && cd demo && ts-node ../src/index.ts -e && ts-node ../src/index.ts -e"
+    "test": "rm -rf demo && mkdir demo && cd demo && tsx ../src/index.ts -e && tsx ../src/index.ts -e"
   },
   "dependencies": {
     "lodash": "^4.17.21",
     "shell-commands": "^0.3.0"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.201",
-    "@types/node": "^20.9.2",
-    "@typescript-eslint/eslint-plugin": "^6.11.0",
-    "@typescript-eslint/parser": "^6.11.0",
-    "eslint": "^8.54.0",
+    "@types/lodash": "^4.14.202",
+    "@types/node": "^20.10.2",
+    "@typescript-eslint/eslint-plugin": "^6.13.1",
+    "@typescript-eslint/parser": "^6.13.1",
+    "eslint": "^8.55.0",
     "eslint-config-alloy": "^5.1.2",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.1",
     "prettier": "^3.1.0",
     "sort-package-json": "^2.6.0",
-    "ts-node": "^10.9.1",
-    "typescript": "^5.2.2",
+    "tsx": "^4.6.1",
+    "typescript": "^5.3.2",
     "yarn-upgrade-all": "^0.7.2"
   }
 }
