@@ -58,7 +58,6 @@ yarn release --github
 
 to release the app to GitHub.
 
-
 ## Options
 
 ```
@@ -71,7 +70,6 @@ Ref: https://classic.yarnpkg.com/lang/en/docs/cli/add/#toc-yarn-add-ignore-works
 
 For now, only the default project type supports it.
 Because the other project types don't have to be in a yarn workspace.
-
 
 ## Dev Notes
 
@@ -86,7 +84,6 @@ Because the other project types don't have to be in a yarn workspace.
 ```
 
 The error is probably caused by https://github.com/cosmiconfig/cosmiconfig/issues/337
-
 
 ## Todo
 

@@ -14,7 +14,7 @@ export const web = async () => {
       serve: 'rm -rf .parcel-cache && parcel src/index.html --dist-dir docs',
     },
   };
-  let originalPkg = JSON.parse(readFileSync('package.json', 'utf-8'));
+  const originalPkg = JSON.parse(readFileSync('package.json', 'utf-8'));
   delete originalPkg.scripts.test;
   writeFileSync('package.json', JSON.stringify(merge(pkgJson, originalPkg), null, 2));
 

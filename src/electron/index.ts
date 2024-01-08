@@ -57,7 +57,7 @@ export const electron = async () => {
       },
     },
   };
-  let originalPkg = JSON.parse(readFileSync('package.json', 'utf-8'));
+  const originalPkg = JSON.parse(readFileSync('package.json', 'utf-8'));
   delete originalPkg.scripts.serve;
   writeFileSync('package.json', JSON.stringify(merge(pkgJson, originalPkg), null, 2));
 

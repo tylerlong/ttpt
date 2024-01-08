@@ -4,5 +4,6 @@ module.exports = {
   rules: {
     'prettier/prettier': ['error'],
     quotes: ['error', 'single', { avoidEscape: true }],
+    'prefer-const': ['error'],
   },
 };
