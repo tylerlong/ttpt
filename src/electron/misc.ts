@@ -12,7 +12,7 @@ const step = () => {
 
   adjust(
     '.env',
-    '',
+    'NAME=Tyler Liu',
     `# Upload to GitHub: https://github.com/settings/tokens
   GH_TOKEN=xxx
   

@@ -39,7 +39,7 @@ const main = async () => {
         mac: {
           // identity: null, // code sign or not
           notarize: {
-            teamId: process.env.APPLE_TEAM_ID,
+            teamId: process.env.APPLE_TEAM_ID!,
           },
         },
       },
