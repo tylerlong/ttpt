@@ -1,6 +1,6 @@
 {
   "name": "ttpt",
-  "version": "0.8.4",
+  "version": "0.8.5",
   "license": "MIT",
   "bin": {
     "ttpt": "./lib/index.js"

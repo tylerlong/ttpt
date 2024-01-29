@@ -20,7 +20,7 @@ app.on('window-all-closed', () => {
   }
 });
 
-// include the settings window
+// for both the main window and the settings window
 app.on('browser-window-created', (event, browserWindow) => {
   enableContextMenu(browserWindow);
   if (!app.isPackaged) {
