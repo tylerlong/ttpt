@@ -2,7 +2,7 @@ import { BrowserWindow, ipcMain, nativeTheme, systemPreferences } from 'electron
 
 import CONSTS from '../constants';
 
-export const toggleDarkMode = (browserWindow: BrowserWindow = undefined) => {
+export const toggleDarkMode = (browserWindow?: BrowserWindow) => {
   let appearance = systemPreferences.getUserDefault('appearance', 'string');
   if (!['auto', 'light', 'dark'].find((item) => item === appearance)) {
     appearance = 'auto';
@@ -13,10 +13,7 @@ export const toggleDarkMode = (browserWindow: BrowserWindow = undefined) => {
   } else {
     isDarkMode = appearance === 'dark';
   }
-  let windows = [browserWindow];
-  if (windows[0] === undefined) {
-    windows = BrowserWindow.getAllWindows();
-  }
+  const windows = browserWindow ? [browserWindow] : BrowserWindow.getAllWindows();
   for (const browserWindow of windows) {
     browserWindow.webContents.send(CONSTS.IS_DARK_MODE, isDarkMode);
   }
@@ -24,7 +21,7 @@ export const toggleDarkMode = (browserWindow: BrowserWindow = undefined) => {
 
 // a newly created window may request the current dark mode status
 ipcMain.handle(CONSTS.IS_DARK_MODE, (event) => {
-  toggleDarkMode(BrowserWindow.fromWebContents(event.sender));
+  toggleDarkMode(BrowserWindow.fromWebContents(event.sender)!);
 });
 
 nativeTheme.on('updated', () => toggleDarkMode());

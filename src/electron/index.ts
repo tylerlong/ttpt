@@ -11,7 +11,8 @@ import web from './web';
 export const electron = async () => {
   await run(`
     yarn add --dev electron electron-builder nodemon shell-commands
-    yarn add --dev @types/lodash electron-application-menu-template hyperid
+    yarn add --dev @types/lodash hyperid
+    yarn add electron-application-menu-template
   `);
   const pkgJson = {
     productName: 'Untitled App',

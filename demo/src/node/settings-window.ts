@@ -4,7 +4,7 @@ import path from 'path';
 import CONSTS from '../constants';
 import { toggleDarkMode } from './dark-mode';
 
-let settingsWindow: BrowserWindow;
+let settingsWindow: BrowserWindow | undefined;
 
 export const showSettingsWindow = () => {
   if (!settingsWindow) {

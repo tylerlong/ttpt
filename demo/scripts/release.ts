@@ -5,7 +5,11 @@ const build = async () => {
   await run(`
       rm -rf .parcel-cache
       rm -rf build
-      parcel build --no-source-maps
+      # below we write four commands instead of one because we want to output everything in the same directory
+      parcel build --target electron --no-source-maps
+      parcel build --target preload --no-source-maps
+      parcel build --target web --no-source-maps
+      parcel build --target settings --no-source-maps
     `);
 };
 

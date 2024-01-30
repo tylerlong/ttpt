@@ -14,7 +14,7 @@ export const updateApplicationMenu = () => {
   // const edited = !!BrowserWindow.getFocusedWindow()?.isDocumentEdited();
 
   const template = newTemplate();
-  const appMenu = template.find((item) => item.role === 'appMenu');
+  const appMenu = template.find((item) => item.role === 'appMenu')!;
   (appMenu.submenu as MenuItemConstructorOptions[]).splice(
     2,
     0,
@@ -29,20 +29,20 @@ export const updateApplicationMenu = () => {
       type: 'separator',
     },
   );
-  const viewMenu = template.find((item) => item.role === 'viewMenu');
+  const viewMenu = template.find((item) => item.role === 'viewMenu')!;
   if (app.isPackaged) {
     viewMenu.submenu = (viewMenu.submenu as MenuItemConstructorOptions[]).filter(
-      (item) => ['reload', 'forceReload', 'toggleDevTools'].indexOf(item.role) === -1,
+      (item) => ['reload', 'forceReload', 'toggleDevTools'].indexOf(item.role ?? '') === -1,
     );
   }
-  const helpMenu = template.find((item) => item.role === 'help');
+  const helpMenu = template.find((item) => item.role === 'help')!;
   (helpMenu.submenu as MenuItemConstructorOptions[]).unshift({
     label: 'Customer Support',
     async click() {
       shell.openExternal('https://macmate.app/customer-support/');
     },
   });
-  const fileMenu = template.find((item) => item.role === 'fileMenu');
+  const fileMenu = template.find((item) => item.role === 'fileMenu')!;
   (fileMenu.submenu as MenuItemConstructorOptions[]).unshift(
     {
       label: 'New',

@@ -9,7 +9,7 @@ import path from 'path';
 import CONSTS from '../constants';
 import { toggleDarkMode } from './dark-mode';
 
-let settingsWindow: BrowserWindow;
+let settingsWindow: BrowserWindow | undefined;
 
 export const showSettingsWindow = () => {
 if (!settingsWindow) {
@@ -116,7 +116,7 @@ export const updateApplicationMenu = () => {
   // const edited = !!BrowserWindow.getFocusedWindow()?.isDocumentEdited();
 
   const template = newTemplate();
-  const appMenu = template.find((item) => item.role === 'appMenu');
+  const appMenu = template.find((item) => item.role === 'appMenu')!;
   (appMenu.submenu as MenuItemConstructorOptions[]).splice(
     2,
     0,
@@ -131,20 +131,20 @@ export const updateApplicationMenu = () => {
       type: 'separator',
     },
   );
-  const viewMenu = template.find((item) => item.role === 'viewMenu');
+  const viewMenu = template.find((item) => item.role === 'viewMenu')!;
   if (app.isPackaged) {
     viewMenu.submenu = (viewMenu.submenu as MenuItemConstructorOptions[]).filter(
-      (item) => ['reload', 'forceReload', 'toggleDevTools'].indexOf(item.role) === -1,
+      (item) => ['reload', 'forceReload', 'toggleDevTools'].indexOf(item.role ?? '') === -1,
     );
   }
-  const helpMenu = template.find((item) => item.role === 'help');
+  const helpMenu = template.find((item) => item.role === 'help')!;
   (helpMenu.submenu as MenuItemConstructorOptions[]).unshift({
     label: 'Customer Support',
     async click() {
       shell.openExternal('https://macmate.app/customer-support/');
     },
   });
-  const fileMenu = template.find((item) => item.role === 'fileMenu');
+  const fileMenu = template.find((item) => item.role === 'fileMenu')!;
   (fileMenu.submenu as MenuItemConstructorOptions[]).unshift(
     {
       label: 'New',
@@ -223,7 +223,7 @@ contextBridge.exposeInMainWorld('ipc', {
 
 import CONSTS from '../constants';
 
-export const toggleDarkMode = (browserWindow: BrowserWindow = undefined) => {
+export const toggleDarkMode = (browserWindow?: BrowserWindow) => {
   let appearance = systemPreferences.getUserDefault('appearance', 'string');
   if (!['auto', 'light', 'dark'].find((item) => item === appearance)) {
     appearance = 'auto';
@@ -234,10 +234,7 @@ export const toggleDarkMode = (browserWindow: BrowserWindow = undefined) => {
   } else {
     isDarkMode = appearance === 'dark';
   }
-  let windows = [browserWindow];
-  if (windows[0] === undefined) {
-    windows = BrowserWindow.getAllWindows();
-  }
+  const windows = browserWindow ? [browserWindow] : BrowserWindow.getAllWindows();
   for (const browserWindow of windows) {
     browserWindow.webContents.send(CONSTS.IS_DARK_MODE, isDarkMode);
   }
@@ -245,7 +242,7 @@ export const toggleDarkMode = (browserWindow: BrowserWindow = undefined) => {
 
 // a newly created window may request the current dark mode status
 ipcMain.handle(CONSTS.IS_DARK_MODE, (event) => {
-  toggleDarkMode(BrowserWindow.fromWebContents(event.sender));
+  toggleDarkMode(BrowserWindow.fromWebContents(event.sender)!);
 });
 
 nativeTheme.on('updated', () => toggleDarkMode());
