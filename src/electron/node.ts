@@ -251,7 +251,7 @@ nativeTheme.on('updated', () => toggleDarkMode());
 
   ensure(
     'src/node/create-window.ts',
-    `import { BrowserWindow, app } from 'electron';
+    `import { BrowserWindow, app, shell } from 'electron';
 import { join } from 'path';
 
 const createWindow = () => {
@@ -268,6 +268,12 @@ const createWindow = () => {
   } else {
     mainWindow.loadURL('http://localhost:1234');
   }
+
+  // open new window in external browser
+  mainWindow.webContents.setWindowOpenHandler(({ url }) => {
+    shell.openExternal(url);
+    return { action: 'deny' };
+  });
 };
 
 export default createWindow;  
