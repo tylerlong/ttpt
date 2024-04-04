@@ -27,7 +27,7 @@ const step = () => {
   ensure('.prettierignore', 'node_modules/');
   const pkgJson = {
     scripts: {
-      lint: "eslint --fix '**/*.{ts,tsx,js,jsx}' && prettier --write . && sort-package-json",
+      lint: "tsc --noEmit ./src/*.ts && eslint --fix '**/*.{ts,tsx,js,jsx}' && prettier --write . && sort-package-json",
     },
   };
   const originalPkg = JSON.parse(readFileSync('package.json', 'utf-8'));
