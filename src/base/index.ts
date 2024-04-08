@@ -29,7 +29,7 @@ export const base = async (inputs: Set<string>) => {
   }
   await run(`
     yarn add --dev${workSpaceOption} ttpt yarn-upgrade-all typescript @types/node tsx
-    yarn add --dev${workSpaceOption} eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint-config-alloy
+    yarn add --dev${workSpaceOption} eslint@^8.57.0 @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint-config-alloy
     yarn add --dev${workSpaceOption} prettier eslint-plugin-prettier eslint-config-prettier sort-package-json
     yarn add --dev${workSpaceOption} dotenv-override-true
   `);

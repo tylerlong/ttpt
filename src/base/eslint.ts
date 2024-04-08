@@ -29,6 +29,9 @@ const step = () => {
     scripts: {
       lint: "tsc --noEmit ./src/*.ts && eslint --fix '**/*.{ts,tsx,js,jsx}' && prettier --write . && sort-package-json",
     },
+    'yarn-upgrade-all': {
+      ignore: ['eslint'],
+    },
   };
   const originalPkg = JSON.parse(readFileSync('package.json', 'utf-8'));
   writeFileSync('package.json', JSON.stringify(merge(pkgJson, originalPkg), null, 2));
