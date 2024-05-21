@@ -6,4 +6,9 @@ module.exports = {
     quotes: ['error', 'single', { avoidEscape: true }],
     'prefer-const': ['error'],
   },
+  settings: {
+    react: {
+      version: 'detect',
+    },
+  },
 };
