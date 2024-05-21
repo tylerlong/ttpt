@@ -1,0 +1,10 @@
+@import '../node_modules/antd/dist/reset.css';
+
+body {
+  margin: 0;
+}
+
+body > div {
+  width: 100vw;
+  height: 100vh;
+}
