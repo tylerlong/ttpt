@@ -4,13 +4,18 @@ import { overwrite, replace } from '../utils';
 
 export const r3f = async () => {
   await run(`
-  yarn add --dev three @types/three @react-three/fiber @react-three/eslint-plugin
+  yarn add --dev three @types/three @react-three/fiber @react-three/eslint-plugin @react-three/drei
 `);
 
   replace(
     '.eslintrc.js',
     "extends: ['alloy', 'alloy/react', 'alloy/typescript', 'prettier']",
     "extends: ['alloy', 'alloy/react', 'alloy/typescript', 'plugin:@react-three/recommended', 'prettier']",
+  );
+  replace(
+    '.eslintrc.js',
+    "'prefer-const': ['error'],",
+    "'prefer-const': ['error'],\n    'react/no-unknown-property': ['off'], // https://github.com/jsx-eslint/eslint-plugin-react/issues/3423",
   );
 
   overwrite(
