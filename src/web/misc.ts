@@ -21,6 +21,16 @@ docs/
     "extends: ['alloy', 'alloy/typescript', 'prettier']",
     "extends: ['alloy', 'alloy/react', 'alloy/typescript', 'prettier']",
   );
+  replace(
+    '.eslintrc.js',
+    '};',
+    `settings: {
+    react: {
+      version: 'detect',
+    },
+  },
+};`,
+  );
 };
 
 export default step;
