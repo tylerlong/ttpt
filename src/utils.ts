@@ -47,3 +47,10 @@ export const adjust = (filePath: string, content: string, replacement: string) =
 export const overwrite = (filePath: string, content: string) => {
   writeFileSync(filePath, content.trim() + '\n');
 };
+
+// replace the content in the file, it only replaces the first occurrence
+export const replace = (filePath: string, content: string, replacement: string) => {
+  let fileContent = readFileSync(filePath, 'utf-8');
+  fileContent = fileContent.replace(content, replacement);
+  writeFileSync(filePath, fileContent);
+};

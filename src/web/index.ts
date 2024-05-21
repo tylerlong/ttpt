@@ -7,7 +7,7 @@ import source from './source';
 
 export const web = async () => {
   await run(`
-    yarn add --dev antd react react-dom manate @types/react-dom parcel 
+    yarn add --dev antd react react-dom manate @types/react-dom parcel eslint-plugin-react
   `);
   const pkgJson = {
     scripts: {
