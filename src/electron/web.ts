@@ -6,6 +6,7 @@ const step = () => {
   rmSync('src/index.css');
   rmSync('src/index.html');
   rmSync('src/app.tsx');
+  rmSync('src/icon.svg');
 
   ensure(
     'src/web/settings/index.css',
@@ -111,7 +112,8 @@ root.render(<App store={store} />);
     `<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline'; img-src data:;" />
     <title>Settings - Untitled App</title>
     <link rel="stylesheet" href="index.css" />
@@ -127,6 +129,8 @@ root.render(<App store={store} />);
     `<!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' data:;" />
     <title>Untitled App</title>
     <link rel="stylesheet" href="index.css" />
