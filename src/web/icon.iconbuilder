@@ -1,0 +1,29 @@
+{
+  "formKey": "twYYdTsvTH6M97nLUa9Gig/8",
+  "elements": [
+    {
+      "id": "twYYdTsvTH6M97nLUa9Gig/5",
+      "adjustX": 0,
+      "adjustY": 0,
+      "color": "#00e06c",
+      "hidden": false,
+      "type": "Circle",
+      "diameter": 500,
+      "__type": "Circle"
+    },
+    {
+      "id": "twYYdTsvTH6M97nLUa9Gig/3",
+      "adjustX": -3,
+      "adjustY": -3,
+      "color": "white",
+      "hidden": false,
+      "type": "Icon",
+      "scale": 1.8,
+      "path": [
+        "feather-icons",
+        "chrome"
+      ],
+      "__type": "Icon"
+    }
+  ]
+}
