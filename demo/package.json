@@ -31,7 +31,7 @@
     "sort-package-json": "^2.10.0",
     "three": "^0.164.1",
     "tsx": "^4.10.5",
-    "ttpt": "^0.9.5",
+    "ttpt": "^0.9.6",
     "typescript": "^5.4.5",
     "yarn-upgrade-all": "^0.7.2"
   },

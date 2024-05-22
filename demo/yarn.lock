@@ -4437,10 +4437,10 @@ tsx@^4.10.5:
   optionalDependencies:
     fsevents "~2.3.3"
 
-ttpt@^0.9.5:
-  version "0.9.5"
-  resolved "https://registry.yarnpkg.com/ttpt/-/ttpt-0.9.5.tgz#453ae831506b7203cd7c838aac229f4079755c1b"
-  integrity sha512-GjWLEAyDp7UHm91D3Cvhp0UJPvtjJtpmIF6K6+29wK1hqx08ndJHfQXDN8+RFALFwi1w/af77Is6/yL17ezieQ==
+ttpt@^0.9.6:
+  version "0.9.6"
+  resolved "https://registry.yarnpkg.com/ttpt/-/ttpt-0.9.6.tgz#d77e132daff2eb1dfd18acfc758f5c1d9341104f"
+  integrity sha512-zWjQjQKjqLcIqIwur5tnJIA+Cb7Yx0F3PqM01TCHT5bupSSQskPo6jLqtsgqxkoUhjEQ9MVnue3dVwcNFDARLg==
   dependencies:
     lodash "^4.17.21"
     shell-commands "^0.3.1"

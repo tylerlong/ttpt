@@ -43,10 +43,23 @@ import { Store } from './store';
 const App = (props: { store: Store }) => {
   const render = () => {
     return (
-      <Canvas camera={{ position: [3, 3, 3] }}>
-        <mesh>
+      <Canvas camera={{ position: [0, 3, 8] }}>
+        {/* Lighting */}
+        <ambientLight intensity={0.5} />
+        <directionalLight position={[0, 3, 5]} intensity={0.5} />
+
+        {/* Objects */}
+        <mesh position={[-3, 0, 0]}>
           <boxGeometry />
-          <meshNormalMaterial />
+          <meshStandardMaterial color="red" />
+        </mesh>
+        <mesh position={[0, 0, 0]}>
+          <boxGeometry />
+          <meshStandardMaterial color="blue" />
+        </mesh>
+        <mesh position={[3, 0, 0]}>
+          <boxGeometry />
+          <meshStandardMaterial color="green" />
         </mesh>
       </Canvas>
     );
