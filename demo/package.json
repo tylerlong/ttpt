@@ -4,35 +4,25 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
+    "demo": "tsx -r dotenv-override-true/config src/demo.ts",
     "lint": "tsc --noEmit ./src/*.ts && eslint --fix '**/*.{ts,tsx,js,jsx}' && prettier --write . && sort-package-json",
-    "serve": "rm -rf .parcel-cache && parcel src/index.html --dist-dir docs"
+    "test": "vitest run"
   },
   "devDependencies": {
-    "@react-three/drei": "^9.109.2",
-    "@react-three/eslint-plugin": "^0.1.1",
-    "@react-three/fiber": "^8.16.8",
     "@types/node": "^20.14.12",
-    "@types/react-dom": "^18.3.0",
-    "@types/three": "^0.167.1",
     "@typescript-eslint/eslint-plugin": "^7.17.0",
     "@typescript-eslint/parser": "^7.17.0",
-    "antd": "^5.19.3",
     "dotenv-override-true": "^6.2.2",
     "eslint": "^8.57.0",
     "eslint-config-alloy": "^5.1.2",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
-    "eslint-plugin-react": "^7.35.0",
-    "manate": "^0.6.5",
-    "parcel": "^2.12.0",
     "prettier": "^3.3.3",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
     "sort-package-json": "^2.10.0",
-    "three": "^0.167.0",
     "tsx": "^4.16.2",
     "ttpt": "^0.9.6",
     "typescript": "^5.5.4",
+    "vitest": "^2.0.4",
     "yarn-upgrade-all": "^0.7.2"
   },
   "yarn-upgrade-all": {
