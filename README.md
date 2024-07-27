@@ -30,7 +30,6 @@ or
 yarn ttpt --web
 ```
 
-
 ### Generate a R3F project
 
 ```
@@ -44,7 +43,6 @@ yarn ttpt --r3f
 ```
 
 It will generate a web project with React Three Fiber.
-
 
 ### Generate an electron project
 
