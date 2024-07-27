@@ -5,7 +5,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "demo": "tsx -r dotenv-override-true/config src/demo.ts",
-    "lint": "tsc --noEmit --esModuleInterop ./src/*.ts && eslint --fix '**/*.{ts,tsx,js,jsx}' && prettier --write . && sort-package-json",
+    "lint": "tsc --noEmit --target ESNext --moduleResolution NodeNext --module NodeNext ./src/*.ts && eslint --fix '**/*.{ts,tsx,js,jsx}' && prettier --write . && sort-package-json",
     "test": "vitest run"
   },
   "devDependencies": {
@@ -20,7 +20,7 @@
     "prettier": "^3.3.3",
     "sort-package-json": "^2.10.0",
     "tsx": "^4.16.2",
-    "ttpt": "^0.10.0",
+    "ttpt": "^0.10.1",
     "typescript": "^5.5.4",
     "vitest": "^2.0.4",
     "yarn-upgrade-all": "^0.7.2"
