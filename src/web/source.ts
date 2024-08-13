@@ -2,6 +2,8 @@ import { rmSync } from 'fs';
 import { ensure } from '../utils';
 
 const step = () => {
+  rmSync('src/demo.ts');
+  rmSync('test', { recursive: true, force: true });
   rmSync('src/index.ts');
   ensure(
     'src/index.tsx',

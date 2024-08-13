@@ -27,7 +27,7 @@ const step = () => {
   ensure('.prettierignore', 'node_modules/');
   const pkgJson = {
     scripts: {
-      lint: "tsc --noEmit --target ESNext --moduleResolution NodeNext --module NodeNext ./src/*.ts && eslint --fix '**/*.{ts,tsx,js,jsx}' && prettier --write . && sort-package-json",
+      lint: "tsc --jsx react --skipLibCheck --noEmit --target ESNext --moduleResolution NodeNext --module NodeNext ./src/*.ts && eslint --fix '**/*.{ts,tsx,js,jsx}' && prettier --write . && sort-package-json",
     },
     'yarn-upgrade-all': {
       ignore: ['eslint'],

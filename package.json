@@ -1,6 +1,6 @@
 {
   "name": "ttpt",
-  "version": "0.10.2",
+  "version": "0.11.0",
   "license": "MIT",
   "bin": {
     "ttpt": "./lib/index.js"
@@ -9,7 +9,7 @@
     "baseTest": "rm -rf demo && mkdir demo && cd demo && tsx ../src/index.ts -e",
     "lint": "tsc --noEmit --target ESNext --moduleResolution NodeNext --module NodeNext ./src/*.ts && eslint --fix '**/*.{ts,tsx,js,jsx}' && prettier --write . && sort-package-json",
     "prepublishOnly": "rm -rf lib && tsc src/index.ts --outDir lib",
-    "test": "rm -rf demo && mkdir demo && cd demo && tsx ../src/index.ts"
+    "test": "rm -rf demo && mkdir demo && cd demo && tsx ../src/index.ts -w"
   },
   "dependencies": {
     "lodash": "^4.17.21",
