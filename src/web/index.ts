@@ -16,6 +16,7 @@ export const web = async () => {
   };
   const originalPkg = JSON.parse(readFileSync('package.json', 'utf-8'));
   delete originalPkg.scripts.test;
+  delete originalPkg.scripts.demo;
   writeFileSync('package.json', JSON.stringify(merge(pkgJson, originalPkg), null, 2));
 
   for (const step of [misc, source]) {
