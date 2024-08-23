@@ -4,7 +4,7 @@ import { overwrite, replace } from '../utils';
 
 export const r3f = async () => {
   await run(`
-  yarn add --dev three @types/three @react-three/fiber @react-three/eslint-plugin @react-three/drei
+  yarn add --dev three @types/three @react-three/fiber @react-three/eslint-plugin @react-three/drei leva
 `);
 
   replace(
@@ -37,10 +37,18 @@ body > div {
     `import React from 'react';
 import { Canvas } from "@react-three/fiber";
 import { auto } from 'manate/react';
+import { useControls } from "leva";
 
 import { Store } from './store';
 
 const App = (props: { store: Store }) => {
+  const { position } = useControls({
+    position: {
+      x: 0,
+      y: 0,
+      z: 0,
+    },
+  });
   const render = () => {
     return (
       <Canvas camera={{ position: [0, 3, 8] }}>
@@ -53,7 +61,7 @@ const App = (props: { store: Store }) => {
           <boxGeometry />
           <meshStandardMaterial color="red" />
         </mesh>
-        <mesh position={[0, 0, 0]}>
+        <mesh position={[position.x, position.y, position.z]}>
           <boxGeometry />
           <meshStandardMaterial color="blue" />
         </mesh>
