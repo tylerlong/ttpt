@@ -9,7 +9,7 @@
     "baseTest": "rm -rf demo && mkdir demo && cd demo && tsx ../src/index.ts -e",
     "lint": "tsc --noEmit --target ESNext --moduleResolution NodeNext --module NodeNext ./src/*.ts && eslint --fix '**/*.{ts,tsx,js,jsx}' && prettier --write . && sort-package-json",
     "prepublishOnly": "rm -rf lib && tsc src/index.ts --outDir lib",
-    "test": "rm -rf demo && mkdir demo && cd demo && tsx ../src/index.ts -3"
+    "test": "rm -rf demo && mkdir demo && cd demo && tsx ../src/index.ts -w"
   },
   "dependencies": {
     "lodash": "^4.17.21",
@@ -26,7 +26,7 @@
     "eslint-plugin-prettier": "^5.2.1",
     "prettier": "^3.3.3",
     "sort-package-json": "^2.10.1",
-    "tsx": "^4.17.0",
+    "tsx": "^4.18.0",
     "typescript": "^5.5.4",
     "yarn-upgrade-all": "^0.7.4"
   },

@@ -42,7 +42,7 @@ class Store {
 }
 const store = manage(new Store());
 
-const App = (props: { store: Store }) => {
+const App = auto((props: { store: Store }) => {
   const { store } = props;
   const [isDark, setIsDark] = useState(false);
   useEffect(() => {
@@ -70,35 +70,32 @@ const App = (props: { store: Store }) => {
     init();
     return stop;
   }, []);
-  const render = () => {
-    return (
-      <ConfigProvider
-        theme={{
-          algorithm: isDark ? theme.darkAlgorithm : theme.defaultAlgorithm,
-          token: {
-            colorPrimary: '#00b96b',
-          },
-        }}
-      >
-        <Form initialValues={{ appearance: store.appearance }} key={store.formKey}>
-          <Form.Item label="Appearance" name="appearance">
-            <Radio.Group
-              buttonStyle="solid"
-              onChange={(event) => {
-                store.appearance = event.target.value;
-              }}
-            >
-              <Radio.Button value="light">Light</Radio.Button>
-              <Radio.Button value="dark">Dark</Radio.Button>
-              <Radio.Button value="auto">Auto</Radio.Button>
-            </Radio.Group>
-          </Form.Item>
-        </Form>
-      </ConfigProvider>
-    );
-  };
-  return auto(render, props);
-};
+  return (
+    <ConfigProvider
+      theme={{
+        algorithm: isDark ? theme.darkAlgorithm : theme.defaultAlgorithm,
+        token: {
+          colorPrimary: '#00b96b',
+        },
+      }}
+    >
+      <Form initialValues={{ appearance: store.appearance }} key={store.formKey}>
+        <Form.Item label="Appearance" name="appearance">
+          <Radio.Group
+            buttonStyle="solid"
+            onChange={(event) => {
+              store.appearance = event.target.value;
+            }}
+          >
+            <Radio.Button value="light">Light</Radio.Button>
+            <Radio.Button value="dark">Dark</Radio.Button>
+            <Radio.Button value="auto">Auto</Radio.Button>
+          </Radio.Group>
+        </Form.Item>
+      </Form>
+    </ConfigProvider>
+  );
+});
 
 const container = document.createElement('div');
 document.body.appendChild(container);
@@ -154,7 +151,8 @@ body {
 
   overwrite(
     'src/web/app.tsx',
-    `import React, { useEffect, useState } from 'react';
+    `
+import React, { useEffect, useState } from 'react';
 import { Button, ConfigProvider, Space, Typography, theme } from 'antd';
 import { auto } from 'manate/react';
 
@@ -163,7 +161,7 @@ import CONSTS from '../constants';
 
 const { Text, Title } = Typography;
 
-const App = (props: { store: Store }) => {
+const App = auto((props: { store: Store }) => {
   const { store } = props;
   const [isDark, setIsDark] = useState(false);
   useEffect(() => {
@@ -176,39 +174,36 @@ const App = (props: { store: Store }) => {
     global.ipc.invoke(CONSTS.IS_DARK_MODE);
     return disposer;
   }, []);
-  const render = () => {
-    return (
-      <ConfigProvider
-        theme={{
-          algorithm: isDark ? theme.darkAlgorithm : theme.defaultAlgorithm,
-          token: {
-            colorPrimary: '#00b96b',
-          },
-        }}
-      >
-        <Title>Untitled App</Title>
-        <Space>
-          <Button
-            onClick={() => {
-              store.count -= 1;
-            }}
-          >
-            -
-          </Button>
-          <Text>{store.count}</Text>
-          <Button
-            onClick={() => {
-              store.count += 1;
-            }}
-          >
-            +
-          </Button>
-        </Space>
-      </ConfigProvider>
-    );
-  };
-  return auto(render, props);
-};
+  return (
+    <ConfigProvider
+      theme={{
+        algorithm: isDark ? theme.darkAlgorithm : theme.defaultAlgorithm,
+        token: {
+          colorPrimary: '#00b96b',
+        },
+      }}
+    >
+      <Title>Untitled App</Title>
+      <Space>
+        <Button
+          onClick={() => {
+            store.count -= 1;
+          }}
+        >
+          -
+        </Button>
+        <Text>{store.count}</Text>
+        <Button
+          onClick={() => {
+            store.count += 1;
+          }}
+        >
+          +
+        </Button>
+      </Space>
+    </ConfigProvider>
+  );
+});
 
 export default App;
   `,

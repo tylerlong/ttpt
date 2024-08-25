@@ -33,9 +33,9 @@ import { Store } from './store';
 
 const { Text, Title } = Typography;
 
-const App = (props: { store: Store }) => {
+const App = auto((props: { store: Store }) => {
   const { store } = props;
-  const render = () => (
+  return (
     <>
       <Title>Untitled App</Title>
       <Space>
@@ -57,8 +57,7 @@ const App = (props: { store: Store }) => {
       </Space>
     </>
   );
-  return auto(render, props);
-};
+});
 
 export default App;
 `,
