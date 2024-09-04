@@ -64,7 +64,7 @@ export default App;
   );
   ensure(
     'src/index.html',
-    `<!DOCTYPE html>
+    `<!doctype html>
 <html>
   <head>
     <meta charset="UTF-8" />

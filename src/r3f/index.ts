@@ -24,7 +24,7 @@ export const r3f = async () => {
 
 body {
   margin: 0;
-};
+}
 
 body > div {
   width: 100vw;
@@ -43,6 +43,7 @@ import { useControls } from "leva";
 import { Store } from './store';
 
 const App = auto((props: { store: Store }) => {
+  console.log(props.store.count);
   const { position } = useControls({
     position: {
       x: 0,
