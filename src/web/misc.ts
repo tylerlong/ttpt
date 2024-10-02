@@ -1,6 +1,6 @@
 import { copyFileSync, existsSync } from 'fs';
 
-import { adjust, replace } from '../utils';
+import { adjust, ensure, replace } from '../utils';
 
 const step = () => {
   if (!existsSync('src/icon.svg')) {
@@ -30,6 +30,17 @@ docs/
     },
   },
 };`,
+  );
+  ensure(
+    '.parcelrc',
+    `
+{
+  "extends": "@parcel/config-default",
+  "transformers": {
+    "*.{ts,tsx}": ["@parcel/transformer-typescript-tsc"]
+  }
+}
+    `,
   );
 };
 
