@@ -19,6 +19,7 @@ const step = () => {
     'prettier/prettier': ['error'],
     quotes: ['error', 'single', { avoidEscape: true }],
     'prefer-const': ['error'],
+    '@typescript-eslint/no-invalid-this': 'off',
   },
 };
   `,
