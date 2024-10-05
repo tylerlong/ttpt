@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Space, Typography } from 'antd';
 import { auto } from 'manate/react';
 
-import type { Store } from './store';
+import { Store } from './store';
 
 const { Text, Title } = Typography;
 

@@ -19,7 +19,10 @@ export const base = async (inputs: Set<string>) => {
   };
   if (existsSync('package.json')) {
     const originalPkg = JSON.parse(readFileSync('package.json', 'utf-8'));
-    writeFileSync('package.json', JSON.stringify(merge(pkgJson, originalPkg), null, 2));
+    writeFileSync(
+      'package.json',
+      JSON.stringify(merge(pkgJson, originalPkg), null, 2),
+    );
   } else {
     writeFileSync('package.json', JSON.stringify(pkgJson, null, 2));
   }
@@ -30,14 +33,12 @@ export const base = async (inputs: Set<string>) => {
   }
   await run(`
     yarn add --dev${workSpaceOption} ttpt yarn-upgrade-all typescript @types/node tsx
-    yarn add --dev${workSpaceOption} eslint@^8.57.0 @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint-config-alloy
-    yarn add --dev${workSpaceOption} prettier eslint-plugin-prettier eslint-config-prettier sort-package-json
+    yarn add --dev${workSpaceOption} eslint-config-tyler sort-package-json
     yarn add --dev${workSpaceOption} vitest dotenv-override-true
   `);
 
   ensure('README.md', '# Untitled App');
   ensure('.env', 'NAME=Tyler Liu');
-  // eslint-disable-next-line no-template-curly-in-string
   ensure(
     'src/index.ts',
     `

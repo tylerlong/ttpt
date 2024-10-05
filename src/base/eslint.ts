@@ -4,38 +4,27 @@ import { merge } from 'lodash';
 
 const step = () => {
   ensure(
-    '.prettierrc.js',
-    `module.exports = {
-  ...require('eslint-config-alloy/.prettierrc.js'),
-};
-  `,
+    'prettier.config.mjs',
+    `import config from 'eslint-config-tyler/prettier.config.mjs';
+
+export default config;`,
   );
   ensure(
-    '.eslintrc.js',
-    `module.exports = {
-  extends: ['alloy', 'alloy/typescript', 'prettier'],
-  plugins: ['prettier'],
-  rules: {
-    'prettier/prettier': ['error'],
-    quotes: ['error', 'single', { avoidEscape: true }],
-    'prefer-const': ['error'],
-    '@typescript-eslint/no-invalid-this': 'off',
-  },
-};
-  `,
+    'eslint.config.mjs',
+    `import config from 'eslint-config-tyler/eslint.config.mjs';
+
+export default config;`,
   );
-  ensure('.eslintignore', 'node_modules/');
-  ensure('.prettierignore', 'node_modules/');
   const pkgJson = {
     scripts: {
-      lint: "tsc --jsx react --skipLibCheck --noEmit --target ESNext --moduleResolution NodeNext --module NodeNext ./src/*.ts && eslint --fix '**/*.{ts,tsx,js,jsx}' && prettier --write . && sort-package-json",
-    },
-    'yarn-upgrade-all': {
-      ignore: ['eslint'],
+      lint: 'tsc --jsx react --skipLibCheck --noEmit --target ESNext --moduleResolution NodeNext --module NodeNext ./src/*.ts && eslint . --fix && prettier --write . && sort-package-json',
     },
   };
   const originalPkg = JSON.parse(readFileSync('package.json', 'utf-8'));
-  writeFileSync('package.json', JSON.stringify(merge(pkgJson, originalPkg), null, 2));
+  writeFileSync(
+    'package.json',
+    JSON.stringify(merge(pkgJson, originalPkg), null, 2),
+  );
 };
 
 export default step;

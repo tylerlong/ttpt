@@ -13,24 +13,15 @@ const step = () => {
 docs/
   `,
   );
-  adjust('.eslintignore', '', 'docs/');
-  adjust('.prettierignore', '', 'docs/');
+  replace(
+    'eslint.config.mjs',
+    'export default config;',
+    `config[0].ignores = ['docs/'];
+
+export default config;`,
+  );
+  ensure('.prettierignore', 'docs/');
   adjust('.ackrc', '', '--ignore-dir=docs');
-  replace(
-    '.eslintrc.js',
-    "extends: ['alloy', 'alloy/typescript', 'prettier']",
-    "extends: ['alloy', 'alloy/react', 'alloy/typescript', 'prettier']",
-  );
-  replace(
-    '.eslintrc.js',
-    '};',
-    `settings: {
-    react: {
-      version: 'detect',
-    },
-  },
-};`,
-  );
   ensure(
     '.parcelrc',
     `

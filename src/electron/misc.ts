@@ -1,5 +1,5 @@
 import { copyFileSync, existsSync } from 'fs';
-import { adjust } from '../utils';
+import { adjust, replace } from '../utils';
 
 const step = () => {
   if (!existsSync('icon.png')) {
@@ -7,8 +7,16 @@ const step = () => {
   }
   adjust('.gitignore', 'docs/', 'build/\ndist/\n.DS_Store');
   adjust('.prettierignore', 'docs/', 'build/\ndist/');
-  adjust('.eslintignore', 'docs/', 'build/\ndist/');
-  adjust('.ackrc', '--ignore-dir=docs', '--ignore-dir=build\n--ignore-dir=dist');
+  replace(
+    'eslint.config.mjs',
+    "config[0].ignores = ['docs/'];",
+    "config[0].ignores = ['docs/', 'build/', 'dist/'];",
+  );
+  adjust(
+    '.ackrc',
+    '--ignore-dir=docs',
+    '--ignore-dir=build\n--ignore-dir=dist',
+  );
 
   adjust(
     '.env',

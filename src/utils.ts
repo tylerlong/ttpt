@@ -30,7 +30,11 @@ const lines = (content: string) => {
  * @param content the content to be replaced
  * @param replacement the replacement
  */
-export const adjust = (filePath: string, content: string, replacement: string) => {
+export const adjust = (
+  filePath: string,
+  content: string,
+  replacement: string,
+) => {
   let fileContent = readFileSync(filePath, 'utf-8');
   for (const line of lines(content)) {
     fileContent = fileContent.replace(line + '\n', '');
@@ -49,7 +53,11 @@ export const overwrite = (filePath: string, content: string) => {
 };
 
 // replace the content in the file, it only replaces the first occurrence
-export const replace = (filePath: string, content: string, replacement: string) => {
+export const replace = (
+  filePath: string,
+  content: string,
+  replacement: string,
+) => {
   let fileContent = readFileSync(filePath, 'utf-8');
   fileContent = fileContent.replace(content, replacement);
   writeFileSync(filePath, fileContent);

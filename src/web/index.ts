@@ -7,7 +7,7 @@ import source from './source';
 
 export const web = async () => {
   await run(`
-    yarn add --dev antd react react-dom manate @types/react-dom parcel eslint-plugin-react
+    yarn add --dev antd react react-dom manate @types/react-dom parcel
   `);
   const pkgJson = {
     scripts: {
@@ -17,7 +17,10 @@ export const web = async () => {
   const originalPkg = JSON.parse(readFileSync('package.json', 'utf-8'));
   delete originalPkg.scripts.test;
   delete originalPkg.scripts.demo;
-  writeFileSync('package.json', JSON.stringify(merge(pkgJson, originalPkg), null, 2));
+  writeFileSync(
+    'package.json',
+    JSON.stringify(merge(pkgJson, originalPkg), null, 2),
+  );
 
   for (const step of [misc, source]) {
     step();

@@ -7,12 +7,7 @@ const step = () => {
 .env
 `,
   );
-  ensure(
-    '.ackrc',
-    `--ignore-dir=node_modules
---ignore-file=match:/^yarn\\.lock$/
-  `,
-  );
+  ensure('.ackrc', `--ignore-file=match:/^yarn\\.lock$/`);
 };
 
 export default step;
