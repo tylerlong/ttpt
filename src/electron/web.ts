@@ -211,7 +211,8 @@ export default App;
 
   ensure(
     'src/web/Globals.d.ts',
-    `declare namespace ipc {
+    `/* eslint-disable @typescript-eslint/no-explicit-any */
+declare namespace ipc {
   function invoke(channel: string, ...args: any[]): Promise<any>;
   function on(channel: string, listener: (...args: any[]) => void): () => void;
 }

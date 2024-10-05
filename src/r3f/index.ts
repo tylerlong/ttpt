@@ -1,21 +1,37 @@
 import { run } from 'shell-commands';
 
-import { overwrite, replace } from '../utils';
+import { overwrite } from '../utils';
 
 export const r3f = async () => {
   await run(`
   yarn add --dev three @types/three @react-three/fiber @react-three/eslint-plugin @react-three/drei leva
 `);
 
-  replace(
-    '.eslintrc.js',
-    "extends: ['alloy', 'alloy/react', 'alloy/typescript', 'prettier']",
-    "extends: ['alloy', 'alloy/react', 'alloy/typescript', 'plugin:@react-three/recommended', 'prettier']",
-  );
-  replace(
-    '.eslintrc.js',
-    "'prefer-const': ['error'],",
-    "'prefer-const': ['error'],\n    'react/no-unknown-property': ['off'], // https://github.com/jsx-eslint/eslint-plugin-react/issues/3423",
+  overwrite(
+    'eslint.config.mjs',
+    `import config from 'eslint-config-tyler/eslint.config.mjs';
+import { rules } from '@react-three/eslint-plugin';
+
+config[0].ignores = ['docs/'];
+
+// last element must be prettier, we insert our rules before it
+config.splice(config.length - 1, 0, {
+  plugins: {
+    '@react-three': {
+      rules,
+    },
+  },
+  rules: {
+    // ref: https://github.com/pmndrs/react-three-fiber/blob/master/packages/eslint-plugin/src/configs/recommended.ts
+    '@react-three/no-clone-in-loop': 'error',
+    '@react-three/no-new-in-loop': 'error',
+
+    // https://github.com/jsx-eslint/eslint-plugin-react/issues/3423"
+    'react/no-unknown-property': ['off'],
+  },
+});
+
+export default config;`,
   );
 
   overwrite(

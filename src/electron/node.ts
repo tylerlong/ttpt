@@ -205,7 +205,8 @@ export const updateApplicationMenu = () => {
 
   ensure(
     'src/node/preload.ts',
-    `import { contextBridge, ipcRenderer } from 'electron';
+    `/* eslint-disable @typescript-eslint/no-explicit-any */
+import { contextBridge, ipcRenderer } from 'electron';
 
 contextBridge.exposeInMainWorld('ipc', {
   invoke: (channel: string, ...args: any[]) => ipcRenderer.invoke(channel, ...args),
