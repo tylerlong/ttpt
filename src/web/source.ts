@@ -13,9 +13,7 @@ import { createRoot } from 'react-dom/client';
 import App from './app';
 import store from './store';
 
-const container = document.createElement('div');
-document.body.appendChild(container);
-const root = createRoot(container);
+const root = createRoot(document.getElementById('root')!);
 root.render(
   <StrictMode>
     <App store={store} />
@@ -74,6 +72,7 @@ export default App;
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
+    <div id="root"></div>
     <script type="module" src="index.tsx"></script>
   </body>
 </html>

@@ -8,19 +8,19 @@
     "serve": "rm -rf .parcel-cache && parcel src/index.html --dist-dir docs"
   },
   "devDependencies": {
-    "@types/node": "^22.7.4",
-    "@types/react-dom": "^18.3.0",
-    "antd": "^5.21.2",
+    "@types/node": "^22.7.5",
+    "@types/react-dom": "^18.3.1",
+    "antd": "^5.21.3",
     "dotenv-override-true": "^6.2.2",
-    "eslint-config-tyler": "^0.1.4",
+    "eslint-config-tyler": "^0.1.5",
     "manate": "^0.9.8",
     "parcel": "^2.12.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "sort-package-json": "^2.10.1",
     "tsx": "^4.19.1",
-    "ttpt": "^0.12.4",
-    "typescript": "^5.6.2",
+    "ttpt": "^0.12.5",
+    "typescript": "^5.6.3",
     "vitest": "^2.1.2",
     "yarn-upgrade-all": "^0.7.4"
   }
