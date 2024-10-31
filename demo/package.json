@@ -4,7 +4,7 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "build": "rm -rf .parcel-cache docs && parcel build src/index.html --dist-dir docs",
+    "build": "rm -rf .parcel-cache docs && parcel build src/index.html --dist-dir docs --public-url ./",
     "lint": "tsc --jsx react --skipLibCheck --noEmit --target ESNext --moduleResolution NodeNext --module NodeNext ./src/*.ts && eslint . --fix && prettier --write . && sort-package-json",
     "serve": "rm -rf .parcel-cache temp && parcel src/index.html --dist-dir temp"
   },
@@ -20,7 +20,7 @@
     "react-dom": "^18.3.1",
     "sort-package-json": "^2.10.1",
     "tsx": "^4.19.2",
-    "ttpt": "^0.12.6",
+    "ttpt": "^0.12.8",
     "typescript": "^5.6.3",
     "vitest": "^2.1.4",
     "yarn-upgrade-all": "^0.7.4"

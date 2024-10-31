@@ -1,4 +1,5 @@
 import { readFileSync, writeFileSync } from 'fs';
+
 import { merge } from 'lodash';
 import { run } from 'shell-commands';
 
@@ -14,7 +15,7 @@ export const web = async () => {
       serve:
         'rm -rf .parcel-cache temp && parcel src/index.html --dist-dir temp',
       build:
-        'rm -rf .parcel-cache docs && parcel build src/index.html --dist-dir docs',
+        'rm -rf .parcel-cache docs && parcel build src/index.html --dist-dir docs --public-url ./',
     },
   };
   const originalPkg = JSON.parse(readFileSync('package.json', 'utf-8'));
