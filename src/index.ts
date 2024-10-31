@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env tsx
 import { run } from 'shell-commands';
 
 import { base } from './base';

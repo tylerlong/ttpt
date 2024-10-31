@@ -1,26 +1,25 @@
 {
   "name": "ttpt",
-  "version": "0.12.7",
+  "version": "0.12.8",
   "license": "MIT",
   "bin": {
-    "ttpt": "./lib/index.js"
+    "ttpt": "./src/index.ts"
   },
   "scripts": {
     "baseTest": "rm -rf demo && mkdir demo && cd demo && tsx ../src/index.ts -e",
     "lint": "tsc --noEmit --target ESNext --moduleResolution NodeNext --module NodeNext ./src/*.ts && eslint . --fix && prettier --write . && sort-package-json",
-    "prepublishOnly": "rm -rf lib && tsc src/index.ts --outDir lib",
     "test": "rm -rf demo && mkdir demo && cd demo && tsx ../src/index.ts -w"
   },
   "dependencies": {
     "lodash": "^4.17.21",
-    "shell-commands": "^0.4.2"
+    "shell-commands": "^0.4.2",
+    "tsx": "^4.19.2"
   },
   "devDependencies": {
     "@types/lodash": "^4.17.13",
     "@types/node": "^22.8.5",
     "eslint-config-tyler": "^0.1.8",
     "sort-package-json": "^2.10.1",
-    "tsx": "^4.19.2",
     "typescript": "^5.6.3",
     "yarn-upgrade-all": "^0.7.4"
   }
