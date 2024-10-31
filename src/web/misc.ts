@@ -10,7 +10,7 @@ const step = () => {
     '.gitignore',
     '',
     `.parcel-cache/
-docs/
+temp/
   `,
   );
   replace(

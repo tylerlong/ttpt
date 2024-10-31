@@ -11,7 +11,10 @@ export const web = async () => {
   `);
   const pkgJson = {
     scripts: {
-      serve: 'rm -rf .parcel-cache && parcel src/index.html --dist-dir docs',
+      serve:
+        'rm -rf .parcel-cache temp && parcel src/index.html --dist-dir temp',
+      build:
+        'rm -rf .parcel-cache docs && parcel build src/index.html --dist-dir docs',
     },
   };
   const originalPkg = JSON.parse(readFileSync('package.json', 'utf-8'));

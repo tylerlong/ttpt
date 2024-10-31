@@ -1,6 +1,6 @@
-import React from 'react';
 import { Button, Space, Typography } from 'antd';
 import { auto } from 'manate/react';
+import React from 'react';
 
 import { Store } from './store';
 
