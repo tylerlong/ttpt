@@ -1,11 +1,12 @@
 import { readFileSync, writeFileSync } from 'fs';
+
 import { merge } from 'lodash';
 import { run } from 'shell-commands';
 
 import { ensure } from '../utils';
 import misc from './misc';
-import scripts from './scripts';
 import node from './node';
+import scripts from './scripts';
 import web from './web';
 
 export const electron = async () => {

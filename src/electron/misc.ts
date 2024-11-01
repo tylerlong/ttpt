@@ -1,4 +1,5 @@
 import { copyFileSync, existsSync } from 'fs';
+
 import { adjust, replace } from '../utils';
 
 const step = () => {

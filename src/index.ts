@@ -2,9 +2,9 @@
 import { run } from 'shell-commands';
 
 import { base } from './base';
-import { web } from './web';
 import { electron } from './electron';
 import { r3f } from './r3f';
+import { web } from './web';
 
 const projectTypes = {
   base: [],

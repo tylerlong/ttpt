@@ -1,4 +1,5 @@
 import { existsSync, readFileSync, writeFileSync } from 'fs';
+
 import { merge } from 'lodash';
 import { run } from 'shell-commands';
 

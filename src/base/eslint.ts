@@ -1,6 +1,8 @@
 import { readFileSync, writeFileSync } from 'fs';
-import { ensure } from '../utils';
+
 import { merge } from 'lodash';
+
+import { ensure } from '../utils';
 
 const step = () => {
   ensure(

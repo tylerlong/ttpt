@@ -1,4 +1,5 @@
 import { rmSync } from 'fs';
+
 import { ensure } from '../utils';
 
 const step = () => {
