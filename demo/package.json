@@ -9,7 +9,7 @@
     "serve": "rm -rf .parcel-cache temp && parcel src/index.html --dist-dir temp"
   },
   "devDependencies": {
-    "@types/node": "^22.8.5",
+    "@types/node": "^22.8.6",
     "@types/react-dom": "^18.3.1",
     "antd": "^5.21.6",
     "dotenv-override-true": "^6.2.2",
@@ -20,7 +20,7 @@
     "react-dom": "^18.3.1",
     "sort-package-json": "^2.10.1",
     "tsx": "^4.19.2",
-    "ttpt": "^0.12.8",
+    "ttpt": "^0.12.9",
     "typescript": "^5.6.3",
     "vitest": "^2.1.4",
     "yarn-upgrade-all": "^0.7.4"

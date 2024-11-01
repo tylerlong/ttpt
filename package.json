@@ -1,6 +1,6 @@
 {
   "name": "ttpt",
-  "version": "0.12.9",
+  "version": "0.12.10",
   "license": "MIT",
   "bin": {
     "ttpt": "./src/index.ts"
@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "@types/lodash": "^4.17.13",
-    "@types/node": "^22.8.5",
+    "@types/node": "^22.8.6",
     "eslint-config-tyler": "^0.1.8",
     "sort-package-json": "^2.10.1",
     "typescript": "^5.6.3",

@@ -16,12 +16,12 @@ temp/
   replace(
     'eslint.config.mjs',
     'export default config;',
-    `config[0].ignores = ['docs/'];
+    `config[0].ignores = ['docs/', 'temp/'];
 
 export default config;`,
   );
-  ensure('.prettierignore', 'docs/');
-  adjust('.ackrc', '', '--ignore-dir=docs');
+  ensure('.prettierignore', 'docs/\ntemp/');
+  adjust('.ackrc', '', '--ignore-dir=docs\n--ignore-dir=temp');
   ensure(
     '.parcelrc',
     `
